@@ -1,6 +1,6 @@
-## Welcome to GitHub Pages
+## My Previous Projects
 
-You can use the [editor on GitHub](https://github.com/zuxinrui/zuxinrui.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+Welcome to my github page! All these projects below are my previous projects. For the source code just check the link: [Zu's GitHub](https://github.com/zuxinrui/) to view further descriptions. This page is still under construction. I hope each time I build a new robot (such like high-precision light-weight robotic arm) can be useful for you!
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
