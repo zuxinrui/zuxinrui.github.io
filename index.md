@@ -2,11 +2,12 @@
 
 Welcome to my github page! All these projects below are my previous projects. For the source code just check the link: [Zu's GitHub](https://github.com/zuxinrui/) to view further descriptions. This page is still under construction. I hope each time I build a new robot (such like high-precision light-weight robotic arm) can be useful for you!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+These projects are sorted by time.
 
-### Markdown
+### SmartArm
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+SmartArm is a reconfigurable modular robotic arm using high-performance servo modules to construct variable degrees of freedom. Using CAN protocol and removable structure, it will adapt to multi-environment tasks. The physical structure was designed through Fusion 360 Autodesk.
+
 
 ```markdown
 Syntax highlighted code block
