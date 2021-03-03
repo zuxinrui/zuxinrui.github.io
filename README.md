@@ -1,2 +1,2 @@
-# zuxinrui.github.io
-a place where magic happens
+# Garage of My Robotic Projects
+Robots are real, not just codes and pictures.
