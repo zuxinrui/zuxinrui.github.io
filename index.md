@@ -54,16 +54,21 @@ I combined my previous sonic localization system and IMU together with Kalman Fi
 # UAV Interceptor
 
 ![image](/img/uav1.png)
+
+## Anti-UAV Design
+
 ![image](/img/uav2.png)
 ![image](/img/uav3.png)
-![image](/img/uav4.png)
 ![image](/img/interceptor.JPG)
+
+## UAV Interceptor Experiments
+
+![image](/img/uav4.png)
 
 # 3Arobot
 
 ![image](/img/3arobot1.png)
 ![image](/img/3arobot2.png)
-![image](/img/3dprinted_arm.JPG)
 
 ```markdown
 Syntax highlighted code block
