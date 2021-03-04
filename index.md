@@ -8,7 +8,7 @@
       <p><b>7500 AE Enschede, Netherlands</b></p>
     </td>
     <td width="25%">
-      <img src="/img/zhengjianzhao.jpg" width="100%">
+      <img src="/zuxinrui.png" width="100%">
     </td>
   </tr>
 </table>
