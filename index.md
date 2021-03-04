@@ -12,10 +12,9 @@
     </td>
   </tr>
 </table>
-
-## My Previous Projects
-
-Welcome to my page! These are my on-going and previous projects. For the source code just check the link: [Zu's GitHub](https://github.com/zuxinrui/) to view further descriptions. This page is still under construction. I hope each time I build a new robot (such like high-precision light-weight robotic arm) can be useful for you!
+# head
+## Introduction
+Welcome to my page! These are my on-going and previous projects. I've always love robot combining useful learning algorithms and elegent control theories. Perception, recognition and control are three main modules of robotics and I desire to contruct them organically in order to build fancy robots. With the deep thought about dynamics in control theory and the innovative ideas in learning algorithm, building such robots is like cooking, machine learning spreads fancinating smell to attract me to dive into this area, and control theory provides excellent flavor to make me love the elegence of robotics.
 
 These projects are sorted by time.
 
