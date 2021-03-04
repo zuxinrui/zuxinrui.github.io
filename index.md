@@ -33,7 +33,7 @@ SmartArm is a reconfigurable modular robotic arm using full closed-loop percepti
 
 ## Smartarm with MoveIt!
 
-I also developed a MoveIt! simulation&control environment for Smartarm. I developed my own MoveIt! move_group function to fit the motion planning algorithm. The function 'move()' in MoveAction's client has been adjusted to fulfill the generation of the trajectory.
+I also developed a MoveIt! simulation&control environment for Smartarm. I developed my own MoveIt! `move_group` function to fit the motion planning algorithm. The function `move()` in MoveAction's client has been adjusted to fulfill the generation of the trajectory.
 
 ## Smartarm Localization System
 
@@ -53,10 +53,16 @@ I combined my previous sonic localization system and IMU together with Kalman Fi
 
 # UAV Interceptor
 
+![image](/img/uav1.png)
+![image](/img/uav2.png)
+![image](/img/uav3.png)
+![image](/img/uav4.png)
 ![image](/img/interceptor.JPG)
 
 # 3Arobot
 
+![image](/img/3arobot1.png)
+![image](/img/3arobot2.png)
 ![image](/img/3dprinted_arm.JPG)
 
 ```markdown
@@ -76,13 +82,3 @@ Syntax highlighted code block
 
 [Link](url) and ![Image](src)
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/zuxinrui/zuxinrui.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
