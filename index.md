@@ -13,18 +13,31 @@
   </tr>
 </table>
 
-# head
-
-## Introduction
+# Introduction
 
 Welcome to my page! These are my on-going and previous projects. I've always love robot combining useful learning algorithms and elegent control theories. Perception, recognition and control are three main modules of robotics and I desire to contruct them organically in order to build fancy robots. With the deep thought about dynamics in control theory and the innovative ideas in learning algorithm, building such robots is like cooking, machine learning spreads fancinating smell to attract me to dive into this area, and control theory provides excellent flavor to make me love the elegence of robotics.
 
 These projects are sorted by time.
 
-### SmartArm
+# SmartArm
 
-SmartArm is a reconfigurable modular robotic arm using high-performance servo modules to construct variable degrees of freedom. Using CAN protocol and removable structure, it will adapt to multi-environment tasks. The physical structure was designed through Fusion 360 Autodesk.
+SmartArm is a reconfigurable modular robotic arm using full closed-loop perception control and adaptive control to achieve the same repeatability with much more expensive robotic manipulators. Using multi-sensor system and removable structure, it will adapt to multi-environment tasks. Smartarm is fully built by my own and I will do further research based on this platform. Smartarm uses ROS noetic as the middleware and the physical structure was designed through Fusion 360 Autodesk.
 
+## Smartarm Controller
+
+## Smartarm MoveIt! Package
+
+## Smartarm Localization System
+
+# SLAM Simulation
+
+# Sonic Localization System
+
+# SLAM mobile platform
+
+# UAV Interceptor
+
+# 3Arobot
 
 ```markdown
 Syntax highlighted code block
