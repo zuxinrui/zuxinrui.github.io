@@ -1,14 +1,14 @@
 <table border="0">
   <tr>
     <td width="75%">
-      <h1>张三</h1>
-      <p><b>硕士研究生</b></p>
-      <p><b>××大学××学院</b></p>
-      <p><b>邮箱：1234567789@qq.com</b></p>
-      <p><b>地址：××市××区××路××号××大学，××楼，邮编×××</b></p>
+      <h1>Xinrui Zu</h1>
+      <p><b>MSc student in Robotics</b></p>
+      <p><b>University of Twente</b></p>
+      <p><b>Email:zuxinrui95@gmail.com</b></p>
+      <p><b>7500 AE Enschede, Netherlands</b></p>
     </td>
     <td width="25%">
-      <img src="/zhengjianzhao.jpg" width="100%">      % 插入证件照代码
+      <img src="/img/zhengjianzhao.jpg" width="100%">
     </td>
   </tr>
 </table>
