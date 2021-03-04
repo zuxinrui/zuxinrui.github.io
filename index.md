@@ -41,7 +41,9 @@ I also developed a MoveIt! simulation&control environment for Smartarm. I develo
 
 ## Smartarm Localization System
 
-I combined my previous sonic localization system and IMU together with Kalman Filtering. The accuracy of the localization is now about 0.5mm in xyz axis and about 0.01rad in 3 rotation axis.
+I combined my previous sonic localization system (developed when I was in Harbin Institute of Technology) and IMU together with extended Kalman Filtering. The accuracy of the localization is now about 0.5mm in xyz axis and about 0.01rad in 3 rotation axis.
+
+This sensor system uses `STM32F103RCT6` as the control unit. I developed `DMA(direct memory access)` and `hardware boosting` to calculate the sensors' data faster. The sampling rate was optimized from 10Hz to 1000Hz.
 
 # SLAM Simulation
 
@@ -59,9 +61,19 @@ The simulation result provides clear phenomenon of typical SLAM process such as 
 
 # SLAM mobile platform
 
+When I was in Fudan university, I was the host and also the lecturer of every year's National Youth University Science Camp. In 2019's Science Camp, I developed a ROS mobile platform with `Raspberry Pi 3B` as the main controller. The vehicle used lidar as the input and used ROS `gmapping` package for SLAM algorithm.
+
 ![image](/img/mobile_platform2.jpg)
 
+In the lecture called `Basic robotics: from theory to practice`, I used this as the tutorial platform and train 100 students the basic SLAM implementing and ROS programming.
+
+![image](/img/science_camp.jpg)
+
+
+
 # UAV Interceptor
+
+This is the product of Denghui Project in Fudan University. This low-cost, high speed Micro-UAV interceptor has an available distance about 500m. Within this distance, it can catch most of quadrotors in the market. The aerocraft structure is developed by my own.
 
 ![image](/img/uav1.png)
 
@@ -76,6 +88,8 @@ The simulation result provides clear phenomenon of typical SLAM process such as 
 ![image](/img/uav4.png)
 
 # 3Arobot
+
+3Arobot is a series of robotic manipulators 
 
 ![image](/img/3arobot1.png)
 ![image](/img/3arobot2.png)
