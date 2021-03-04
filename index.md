@@ -41,7 +41,7 @@ I combined my previous sonic localization system and IMU together with Kalman Fi
 
 # SLAM Simulation
 
-
+![image](/img/slam_simulation.gif)
 
 # Sonic Localization System
 
