@@ -25,21 +25,39 @@ These projects are sorted by time.
 
 SmartArm is a reconfigurable modular robotic arm using full closed-loop perception control and adaptive control to achieve the same repeatability with much more expensive robotic manipulators. Using multi-sensor system and removable structure, it will adapt to multi-environment tasks. Smartarm is fully built by my own and I will do further research based on this platform. Smartarm uses ROS noetic as the middleware and the physical structure was designed through Fusion 360 Autodesk.
 
+![image](/img/smartarm_track.png)
+
 ## Smartarm Controller
 
-## Smartarm MoveIt! Package
+![image](/img/afc.png)
+
+## Smartarm with MoveIt!
+
+I also developed a MoveIt! simulation&control environment for Smartarm. I developed my own MoveIt! move_group function to fit the motion planning algorithm. The function 'move()' in MoveAction's client has been adjusted to fulfill the generation of the trajectory.
 
 ## Smartarm Localization System
 
+I combined my previous sonic localization system and IMU together with Kalman Filtering. The accuracy of the localization is now about 0.5mm in xyz axis and about 0.01rad in 3 rotation axis.
+
 # SLAM Simulation
+
+
 
 # Sonic Localization System
 
+![image](/img/localization.JPG)
+
 # SLAM mobile platform
+
+![image](/img/mobile_platform2.jpg)
 
 # UAV Interceptor
 
+![image](/img/interceptor.JPG)
+
 # 3Arobot
+
+![image](/img/3dprinted_arm.JPG)
 
 ```markdown
 Syntax highlighted code block
