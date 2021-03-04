@@ -41,9 +41,15 @@ I combined my previous sonic localization system and IMU together with Kalman Fi
 
 # SLAM Simulation
 
-![image](/img/slam_simulation.gif)
+This project simulated a vehicle moving around in an unexplored area with a number of landmarks. The sensor system locate the positions of the lankmarks relative to the vehicle's position.
+
+![image](/img/slam_simulation.gif =200*200)
+
+The simulation result provides clear phenomenon of typical SLAM process such as `loop closure`. The circles around the landmarks and the vehicle represent the uncertainty of the first 2 dimensions of the estimated states (xy position).
 
 # Sonic Localization System
+
+
 
 ![image](/img/localization.JPG)
 
