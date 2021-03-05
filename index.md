@@ -47,7 +47,7 @@ The structure above shows Smartarm's MoveIt! functions w.r.t. sensor system and 
 
 I combined my previous sonic localization system (developed when I was in Harbin Institute of Technology) and IMU together with extended Kalman Filtering. The accuracy of the localization is now about 0.5mm in xyz axis and about 0.01rad in 3 rotation axis.
 
-This sensor system uses `STM32F103RCT6` as the control unit. I developed `DMA(direct memory access)` and `hardware boosting` to calculate the sensors' data faster. The sampling rate was optimized from 10Hz to 1000Hz.
+This sensor system uses `STM32F103RCT6` as the control unit. I developed `DMA(direct memory access)` and `hardware boosting` to calculate the sensors' data faster. The sampling rate is 1000Hz.
 
 # SLAM Simulation
 
@@ -59,7 +59,7 @@ The simulation result provides clear phenomenon of typical SLAM process such as 
 
 # Sonic Localization System
 
-
+I developed this localization system during my exchange experience in Harbin Institute of Technology. This localization system contains ultrasonic sensors. Using DMA(direct memry access), the sampling rate had been optimized from 10 Hz to 1000Hz.
 
 ![image](/img/localization.JPG)
 
@@ -73,7 +73,7 @@ In the lecture called `Basic robotics: from theory to practice`, I used this as 
 
 ![image](/img/science_camp.jpg)
 
-
+It was an interesting experience with all the students from high school who brought much curiosity to the workshop. Hope them dive into the fantastic robot world!
 
 # UAV Interceptor
 
@@ -81,13 +81,29 @@ This is the product of Denghui Project in Fudan University. This low-cost, high 
 
 ![image](/img/uav1.png)
 
+This project spent me a lot of time learning extensive multi-disciplinary knowledge, including mechanical engineering, electrical engineering, computer vision, aero-dynamics and embedded programming. I truely learned a lot from the project!
+
 ## Anti-UAV Design
 
+During the design procedure, I iterated the aerocraft structure design many times in order to fit the requirements of limited space, material strength, strike distance, low-weight and other practical requirements. The most significant problem is the extremely compact space. I developed a innovative structure to make the system functional in a very limited space (the diameter of the missile-like aerocraft is only 40mm).
+
 ![image](/img/uav2.png)
+
+As is illustrated above, the missile-like aerocraft's structure uses a net to catch the UAV. The user launch the missile-like aerocraft through a pneumatic gun. When the 'missile' is closed to the UAV, it will ues high-pressure gas cylinder to spray out a net. The UAV will be unfunctional as log as the net is twisted into the propeller.
+
+In the project's design, there were 3 main aspects to ensure the 'missile' have a strike distance around 500m: pattern recognition, structural design and dynamic analysis. In pattern recognition I used CNN(convolutional neural network) to track the UAV's relative position to the 'missile'. In dynamic analysis, I analysed the elastic displacement using finite element analysis and improve the structure design (I like Mechanical Engineering too!)
+
 ![image](/img/uav3.png)
+
+Within all these multi-disciplinary design, I realized that the engineering problem is full of balance and compromise. There will be no excellent product unless we combine multi-disciplinary critical thinking and practice.
+
+I used 3d printer to verify the rationality of the structure.
+
 ![image](/img/interceptor.JPG)
 
 ## UAV Interceptor Experiments
+
+I launched this tiny 'missile' in Fudan campus and the passersby were frightened in a way or another :P. I flied a target quadrotor and the 'missile' brought me back the poor quadrotor, only with many pieces.
 
 ![image](/img/uav4.png)
 
