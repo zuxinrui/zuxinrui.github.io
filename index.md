@@ -37,7 +37,11 @@ It will also contains real-time interpolation algorithm to smooth the generated 
 
 ## Smartarm with MoveIt!
 
-I also developed a MoveIt! simulation&control environment for Smartarm. I developed my own MoveIt! `move_group` function to fit the motion planning algorithm. The function `move()` in MoveAction's client has been adjusted to fulfill the generation of the trajectory.
+I also developed a MoveIt! simulation&control environment for Smartarm. I developed my own MoveIt! `move_group` function to fit the motion planning algorithm. The function `move()` in MoveAction's client has been adjusted as `smartarm_move` to fulfill the fast generation of the trajectory.
+
+![image](/img/smartarm_moveit.png)
+
+The structure above shows Smartarm's MoveIt! functions w.r.t. sensor system and the main control loop. I will continue to develop the low-level real-time controller to improve the performance of Smartarm.
 
 ## Smartarm Localization System
 
