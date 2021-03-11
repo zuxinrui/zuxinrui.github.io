@@ -47,6 +47,8 @@ The structure above shows Smartarm's MoveIt! functions w.r.t. sensor system and 
 
 I combined my previous sonic localization system (developed when I was in Harbin Institute of Technology) and IMU together with extended Kalman Filtering. The accuracy of the localization is now about 0.5mm in xyz axis and about 0.01rad in 3 rotation axis.
 
+![image](/img/sonic_array.png)
+
 This sensor system uses `STM32F103RCT6` as the control unit. I developed `DMA(direct memory access)` and `hardware boosting` to calculate the sensors' data faster. The sampling rate is 1000Hz.
 
 # SLAM Simulation
