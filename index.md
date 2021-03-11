@@ -114,20 +114,4 @@ I launched this tiny 'missile' in Fudan campus and the passersby were frightened
 ![image](/img/3arobot1.png)
 ![image](/img/3arobot2.png)
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
