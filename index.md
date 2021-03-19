@@ -28,7 +28,7 @@ SmartArm is a series of reconfigurable modular robotic manipulators using full c
 ![gif](/img/smartarm2.gif)
 ![gif](/img/smartarm2_tra.gif)
 
-The left GIF below shows the reaction speed test of `end effector tracking` with Smartarm's sonic localization system, which is illustrated in the next sector. The right GIF below shows Smartarm's `motion planning & execute` pipeline using `MoveIt!` APIs with my own code adjustments. I also created a `MoveIt!` function called `asyncPlanAndMove()` after changing `MoveIt!` source code to reach my planning goal.
+The first GIF below shows the reaction speed test of `end effector tracking` with Smartarm's sonic localization system, which is illustrated in the next sector. The second GIF below shows Smartarm's `motion planning & execute` pipeline using `MoveIt!` APIs with my own code adjustments. I also created a `MoveIt!` function called `asyncPlanAndMove()` after changing `MoveIt!` source code to reach my planning goal.
 
 With the benefit of popular open-source frame, Smartarm is suitable for academic and industrial use. I will keep developing this series of robotic manipulators.
 
@@ -118,9 +118,11 @@ I launched this tiny 'missile' in Fudan campus and the passersby were frightened
 
 # 3Arobot
 
-3Arobot is a series of robotic manipulators 
+3Arobot is a series of robotic manipulators printed by the 3D printers. These manipulators have competitive accuracies and repeatabilities. They have the ability to write and draw on a paper with certain end effectors. Furthermore, with a heating extruder, they can be used as 3D printers.
 
 ![image](/img/3arobot1.png)
 ![image](/img/3arobot2.png)
+
+These manipulators brought me the first feasible concepts of robotics, after that I was able to dive into this charming subject. May the force be with robotics.
 
 
