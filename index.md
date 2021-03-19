@@ -26,6 +26,7 @@ These projects are sorted by time.
 SmartArm is a series of reconfigurable modular robotic manipulators using full closed-loop perception control and adaptive control to achieve the same repeatability with much more expensive robotic manipulators. Using multi-sensor system and removable structure, it will adapt to multi-environment tasks. Smartarm is fully built by my own and I will do further research based on this platform. Smartarm uses ROS noetic as the middleware and the physical structure was designed through Fusion 360 Autodesk.
 
 ![gif](/img/smartarm2.gif)
+![gif](/img/samrtarm2_tra.gif)
 
 The GIF below shows the reaction speed test of `end effector tracking` with Smartarm's sonic localization system, which is illustrated in the next sector. The following GIF shows Smartarm's motion planning pipeline combining `MoveIt!` APIs and my own adjustments.
 
