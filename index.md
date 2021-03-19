@@ -28,7 +28,9 @@ SmartArm is a series of reconfigurable modular robotic manipulators using full c
 ![gif](/img/smartarm2.gif)
 ![gif](/img/smartarm2_tra.gif)
 
-The GIF below shows the reaction speed test of `end effector tracking` with Smartarm's sonic localization system, which is illustrated in the next sector. The following GIF shows Smartarm's motion planning pipeline combining `MoveIt!` APIs and my own adjustments.
+The left GIF below shows the reaction speed test of `end effector tracking` with Smartarm's sonic localization system, which is illustrated in the next sector. The right GIF below shows Smartarm's `motion planning & execute` pipeline using `MoveIt!` APIs with my own code adjustments. I also created a `MoveIt!` function called `asyncPlanAndMove()` after changing `MoveIt!` source code to reach my planning goal.
+
+With the benefit of popular open-source frame, Smartarm is suitable for academic and industrial use. I will keep developing this series of robotic manipulators.
 
 ![image](/img/smartarm_track.png)
 
