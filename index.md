@@ -2,8 +2,8 @@
   <tr>
     <td width="75%">
       <h1>Xinrui Zu</h1>
-      <p><b>MSc student in Robotics</b></p>
-      <p><b>University of Twente</b></p>
+      <p><b>BSc in Theoretical and Applied Mechanics, Fudan University</b></p>
+      <p><b>MSc student in Robotics, University of Twente</b></p>
       <p><b>Email:zuxinrui95@gmail.com</b></p>
       <p><b>7500 AE Enschede, Netherlands</b></p>
     </td>
