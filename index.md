@@ -27,7 +27,7 @@ These projects are sorted by time.
 
 ## Paper Link
 
-![url](https://ieeexplore.ieee.org/document/9585419)
+[https://ieeexplore.ieee.org/document/9585419](https://ieeexplore.ieee.org/document/9585419)
 
 # SmartArm
 
