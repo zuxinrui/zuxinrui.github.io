@@ -23,6 +23,14 @@ These projects are sorted by time.
 
 # Deep Recursive Embedding for High-dimensional Data
 
+Deep recursive embedding (DRE) makes use of the latent data representations for boosted embedding performance. We exemplify the flexibility of DRE by different architectures and loss functions, and benchmarked our method against the two most popular embedding methods, namely, t-distributed stochastic neighbor embedding (t-SNE) and uniform manifold approximation and projection (UMAP). The proposed DRE method can map out-of-sample data and scale to extremely large datasets. Experiments on a range of public datasets demonstrated improved embedding performance in terms of local and global structure preservation, compared with other state-of-the-art embedding methods.
+
+The training procedure of DRE:
+
+![image](/img/MNIST-conv-2.gif)
+
+Performance comparison with other state-of-the-art embedding methods:
+
 ![image](/img/MNIST-conv-2.gif)
 
 ## Paper Link
