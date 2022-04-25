@@ -23,7 +23,7 @@ These projects are sorted by time.
 
 # Deep Recursive Embedding for High-dimensional Data
 
-![image](/img/MNIST-conv-2.png)
+![image](/img/MNIST-conv-2.gif)
 
 # SmartArm
 
