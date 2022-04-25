@@ -21,6 +21,10 @@ Welcome to my page! These are my on-going and previous projects. I've always lov
 
 These projects are sorted by time.
 
+# Deep Recursive Embedding for High-dimensional Data
+
+![image](/img/MNIST-conv-2.png)
+
 # SmartArm
 
 SmartArm is a series of reconfigurable modular robotic manipulators using full closed-loop perception control and adaptive control to achieve the same repeatability with much more expensive robotic manipulators. Using multi-sensor system and removable structure, it will adapt to multi-environment tasks. Smartarm is fully built by my own and I will do further research based on this platform. Smartarm uses ROS noetic as the middleware and the physical structure was designed through Fusion 360 Autodesk.
