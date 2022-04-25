@@ -31,7 +31,7 @@ The training procedure of DRE:
 
 Performance comparison with other state-of-the-art embedding methods:
 
-![image](/img/MNIST-conv-2.gif)
+![image](/img/fig4.png)
 
 ## Paper Link
 
