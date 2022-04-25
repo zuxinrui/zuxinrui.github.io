@@ -40,6 +40,8 @@ The first GIF above (left) shows the reaction speed test of `end effector tracki
 
 With the benefit of popular open-source frame, Smartarm is suitable for academic and industrial use. I will keep developing this series of robotic manipulators.
 
+Repo link: [https://github.com/zuxinrui/Smartarm](https://github.com/zuxinrui/Smartarm)
+
 ![image](/img/smartarm_track.png)
 
 ## Smartarm Localization System
