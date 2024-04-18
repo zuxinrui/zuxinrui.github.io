@@ -116,16 +116,16 @@
 
         <h3><li><strong>cHeartFlow: Synthesizing Cardiac MR Images from Sketches</strong> </li></h3>
       <p class="w3-justify">
-          we present contrastive HeartFlow (cHeartFlow), a novel generative framework to synthesize cardiac magnetic resonance (CMR) images from simple sketches by training on contrastive pairs of images and sketches.
+          We present contrastive HeartFlow (cHeartFlow), a novel generative framework to synthesize cardiac magnetic resonance (CMR) images from simple sketches by training on contrastive pairs of images and sketches.
         </p>
       <p class="w3-justify">
-          cHeartFlow generation comparison:
+          cHeartFlow generation compared with popular GAN-based and diffusion-based models:
         </p>
         <p style="text-align:center;">
             <img style="width:100%;" src="images/Fig1_v2.png">
             </p>
       <p class="w3-justify">
-          cHeartFlow overview:
+          cHeartFlow overview ((a) training and (b) sampling):
         </p>
         <p style="text-align:center;">
         <img style="width:70%;" src="images/Fig2_v3.png">
@@ -135,7 +135,7 @@
 
         <h3><li><strong>DiFine UI: Controllable Medical Image Synthesis on the Webpage</strong> </li></h3>
       <p class="w3-justify">
-          I developed a web-based medical image synthesis platform called DiFine UI. The platform is based on the proposed model <a style="color: #447ec9" href="https://essay.utwente.nl/95061/">LSDM</a>. The platform allows users to draw any medical images from sketches and control the synthesis by adjusting the diagnosis parameters through our proposed inpainting classifier guidance. DiFine UI is developed using Uvicorn and FastAPI.
+          I developed a web-based medical image synthesis platform called DiFine UI. The platform is based on the proposed model <a style="color: #447ec9" href="https://essay.utwente.nl/95061/">LSDM</a>. The platform allows users to draw any medical images from sketches and control the synthesis by adjusting the diagnosis parameters through our proposed inpainting classifier guidance. DiFine UI is developed using <a style="color: #447ec9" href="https://www.uvicorn.org/">Uvicorn</a> and <a style="color: #447ec9" href="https://fastapi.tiangolo.com/">FastAPI</a>.
         </p>
       <p class="w3-justify">
           DiFine UI possesses 3 main functions: drawing, controlling, and diagnosis training. The drawing mode allows users to draw any medical images from sketches using different brushes. The control mode allows users to adjust the diagnosis parameters to control the synthesis. The diagnosis training allows users to practice and evaluate the diagnosis based on synthesized images, enabling educational applications.
@@ -177,9 +177,11 @@
         </p>
         <img style="width:100%;" src="images/r2-best.png">
         <p class="w3-justify">
-          Proposed inpainting classifier guidance for the controllability of the CT scan synthesis:
+          Proposed inpainting classifier guidance for the controllability of the CT scan synthesis. The guidance scale is controllable to adjust the malignancy of the synthesized CT scans:
         </p>
+      <p style="text-align:center;">
         <img style="width:80%;" src="images/r4-classifier-scales.png">
+      </p>
 
         <hr class="divider" />
 
