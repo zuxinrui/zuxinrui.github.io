@@ -9,6 +9,14 @@ nav_order: 2
 
 <!-- _pages/publications.md -->
 
+<style>
+/* Enlarge publication preview thumbnails (~2x) for a stronger first impression */
+@media (min-width: 576px) {
+  ol.bibliography .row > .col-sm-2.abbr { flex: 0 0 32%; max-width: 32%; }
+  ol.bibliography .row > .col-sm-2.abbr abbr.badge { max-width: 130px; }
+}
+</style>
+
 <!-- Bibsearch Feature -->
 
 {% include bib_search.liquid %}

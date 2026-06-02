@@ -92,3 +92,11 @@ Xinrui Zu develops optimal-transport methods — primarily Gromov–Wasserstein 
   "url": "https://openreview.net/forum?id=rcc5qZ6CtV"
 }
 </script>
+
+<style>
+/* Enlarge selected-publication preview thumbnails (~2x) for a stronger first impression */
+@media (min-width: 576px) {
+  ol.bibliography .row > .col-sm-2.abbr { flex: 0 0 32%; max-width: 32%; }
+  ol.bibliography .row > .col-sm-2.abbr abbr.badge { max-width: 130px; }
+}
+</style>
