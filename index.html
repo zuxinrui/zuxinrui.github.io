@@ -101,6 +101,7 @@
 <!-- The News Section -->
   <div class="w3-container w3-light-grey w3-padding-32" id="news">
    <h2>News</h2>
+      <p><li> 05/2026, New work <strong>UniOMA</strong> &mdash; a plug-and-play Gromov&ndash;Wasserstein regularizer that aligns structure, not just instance correspondence, across robot sensor modalities (under review).</li></p>
 <!--      <p><li> 12/2023, MSc thesis accepted. <a style="color: #447ec9" href="https://essay.utwente.nl/95061/">[Paper]</a></li></p>-->
       <p><li> 04/2024, One short paper has been accepted by <a href="https://www.midl.io/">MIDL 2024</a>. <a style="color: #447ec9" href="https://openreview.net/forum?id=orIWvvBK2v">[Paper]</a></li></p>
       <p><li> 05/2023, MSc thesis accepted. <a style="color: #447ec9" href="https://essay.utwente.nl/95061/">[Paper]</a></li></p>
@@ -115,6 +116,30 @@
 <!--      These are my on-going and previous projects. I've always love robot combining useful learning algorithms and elegent control theories. Perception, recognition and control are three main modules of robotics and I desire to contruct them organically in order to build fancy robots. With the deep thought about dynamics in control theory and the innovative ideas in learning algorithm, building such robots is like cooking, machine learning spreads fancinating smell to attract me to dive into this area, and control theory provides excellent flavor to make me love the elegence of robotics.-->
       These projects are sorted by time.
     </p>
+      <hr class="divider" />
+        <h3><li><strong>UniOMA: Optimal-Transport Structural Alignment for Robot Perception (under review)</strong></li></h3>
+      <p class="w3-justify">
+          Contrastive losses learn <em>which</em> sensor readings correspond across modalities, yet stay blind to the internal geometry each modality carries. UniOMA closes this gap with a geometry-aware Gromov&ndash;Wasserstein (GW) regularizer that augments any contrastive multimodal objective with structural alignment.
+        </p>
+      <p class="w3-justify">
+          UniOMA in the wild: vision, IMU, and proprioception drive frozen encoders to predict the end-effector position on a real 6-DoF arm &mdash; one of our five robotic benchmarks.
+        </p>
+        <p style="text-align:center;">
+            <img style="width:100%;" src="images/unioma/vip.jpg">
+        </p>
+      <p class="w3-justify">
+          Standard InfoNCE-style losses align instance-level correspondence &mdash; which sample matches which &mdash; but remain invariant to transforms that distort each modality&rsquo;s internal relational geometry. UniOMA encodes each sensor&rsquo;s intra-modality similarity structure and uses a Gromov&ndash;Wasserstein distance to draw every modality toward a dynamically learned consensus geometry, or <em>barycenter</em>. The regularizer is plug-and-play across InfoNCE, Symile, GRAM, and related objectives, and targets robot perception with underexplored modalities &mdash; force, tactile, IMU, proprioception &mdash; where sample density varies widely across sensors. Across five robotic benchmarks, including a new real-robot Vision&ndash;IMU&ndash;Proprioception dataset, UniOMA consistently improves state regression, classification, and cross-modal retrieval.
+        </p>
+      <p class="w3-justify">
+          UniOMA at a glance: (Stage&nbsp;1) estimate a structural-consensus <em>barycenter</em> from per-modality similarity kernels; (Stage&nbsp;2) align each encoder&rsquo;s embedding geometry to it via Gromov&ndash;Wasserstein, on top of the contrastive loss; and (right) the payoff in end-to-end reinforcement learning, where alignment keeps a Unitree Go1 policy robust when a sensor modality is dropped.
+        </p>
+        <p style="text-align:center;">
+            <img style="width:100%;" src="images/unioma/overview.png">
+        </p>
+      <p class="w3-justify">
+          As a byproduct, the learned barycenter weights yield a label-free per-modality structural-importance ranking, surfacing which sensor most shapes a given task &mdash; proprioception in one setting, depth in another &mdash; without task labels or repeated retraining.
+        </p>
+
       <hr class="divider" />
         <h3><li><strong>Contrastive Optimal Transport Flow (under review)</strong> </li></h3>
       <p class="w3-justify">
