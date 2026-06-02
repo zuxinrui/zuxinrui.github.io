@@ -11,7 +11,11 @@ An ultrasonic localization system fused with an IMU via an **Extended Kalman Fil
 
 <div class="row">
   <div class="col-sm-5 mt-3 mt-md-0">{% include figure.liquid path="assets/img/sonic.png" class="img-fluid rounded z-depth-1" alt="Ultrasonic localization sensor system." %}</div>
-  <div class="col-sm-7 mt-3 mt-md-0">{% include figure.liquid path="assets/img/sonic-local.gif" class="img-fluid rounded z-depth-1" alt="Ultrasonic localization tracking in real time." %}</div>
+  <div class="col-sm-7 mt-3 mt-md-0">
+    <video class="img-fluid rounded z-depth-1" autoplay loop muted playsinline alt="Ultrasonic localization tracking in real time.">
+      <source src="{{ 'assets/video/sonic-local.mp4' | relative_url }}" type="video/mp4">
+    </video>
+  </div>
 </div>
 
 The system uses an **STM32F103RCT6** as the control unit, with DMA and hardware acceleration for faster sensor processing at a 1000 Hz sampling rate.
