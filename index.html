@@ -101,7 +101,7 @@
 <!-- The News Section -->
   <div class="w3-container w3-light-grey w3-padding-32" id="news">
    <h2>News</h2>
-      <p><li> 05/2026, New work <strong>UniOMA</strong> &mdash; a plug-and-play Gromov&ndash;Wasserstein regularizer that aligns structure, not just instance correspondence, across robot sensor modalities (under review).</li></p>
+      <p><li> 05/2026, <strong>UniOMA</strong> presented at <strong>ICRA 2026 Late-Breaking Results</strong> and accepted to the <strong>ICRA 2026 &ldquo;From Data to Decisions&rdquo; Workshop</strong> (Poster Session 2). <a style="color: #447ec9" href="https://openreview.net/forum?id=rcc5qZ6CtV">[Paper]</a></li></p>
 <!--      <p><li> 12/2023, MSc thesis accepted. <a style="color: #447ec9" href="https://essay.utwente.nl/95061/">[Paper]</a></li></p>-->
       <p><li> 04/2024, One short paper has been accepted by <a href="https://www.midl.io/">MIDL 2024</a>. <a style="color: #447ec9" href="https://openreview.net/forum?id=orIWvvBK2v">[Paper]</a></li></p>
       <p><li> 05/2023, MSc thesis accepted. <a style="color: #447ec9" href="https://essay.utwente.nl/95061/">[Paper]</a></li></p>
@@ -117,7 +117,8 @@
       These projects are sorted by time.
     </p>
       <hr class="divider" />
-        <h3><li><strong>UniOMA: Optimal-Transport Structural Alignment for Robot Perception (under review)</strong></li></h3>
+        <h3><li><strong>UniOMA: Optimal-Transport Structural Alignment for Robot Perception</strong> <a style="color: #447ec9" href="https://openreview.net/forum?id=rcc5qZ6CtV">[Paper]</a></li></h3>
+      <p class="w3-justify" style="color:#555"><em>ICRA 2026 Late-Breaking Results &amp; ICRA 2026 &ldquo;From Data to Decisions&rdquo; Workshop (Poster Session 2).</em></p>
       <p class="w3-justify">
           Contrastive losses learn <em>which</em> sensor readings correspond across modalities, yet stay blind to the internal geometry each modality carries. UniOMA closes this gap with a geometry-aware Gromov&ndash;Wasserstein (GW) regularizer that augments any contrastive multimodal objective with structural alignment.
         </p>
@@ -128,7 +129,7 @@
             <img style="width:100%;" src="images/unioma/vip.jpg">
         </p>
       <p class="w3-justify">
-          Standard InfoNCE-style losses align instance-level correspondence &mdash; which sample matches which &mdash; but remain invariant to transforms that distort each modality&rsquo;s internal relational geometry. UniOMA encodes each sensor&rsquo;s intra-modality similarity structure and uses a Gromov&ndash;Wasserstein distance to draw every modality toward a dynamically learned consensus geometry, or <em>barycenter</em>. The regularizer is plug-and-play across InfoNCE, Symile, GRAM, and related objectives, and targets robot perception with underexplored modalities &mdash; force, tactile, IMU, proprioception &mdash; where sample density varies widely across sensors. Across five robotic benchmarks, including a new real-robot Vision&ndash;IMU&ndash;Proprioception dataset, UniOMA consistently improves state regression, classification, and cross-modal retrieval.
+          Standard InfoNCE-style losses align instance-level correspondence &mdash; which sample matches which &mdash; but remain invariant to transforms that distort each modality&rsquo;s internal relational geometry. UniOMA encodes each sensor&rsquo;s intra-modality similarity structure and uses a Gromov&ndash;Wasserstein distance to draw every modality toward a dynamically learned consensus geometry, or <em>barycenter</em>. The regularizer is plug-and-play across InfoNCE, Symile, GRAM, and related objectives, scales linearly to three or more modalities, and targets robot perception with underexplored modalities &mdash; force, tactile, IMU, proprioception &mdash; where sample density varies widely across sensors. Across five robotic benchmarks, including a new real-robot Vision&ndash;IMU&ndash;Proprioception dataset, UniOMA consistently improves state regression, classification, and cross-modal retrieval.
         </p>
       <p class="w3-justify">
           UniOMA at a glance: (Stage&nbsp;1) estimate a structural-consensus <em>barycenter</em> from per-modality similarity kernels; (Stage&nbsp;2) align each encoder&rsquo;s embedding geometry to it via Gromov&ndash;Wasserstein, on top of the contrastive loss; and (right) the payoff in end-to-end reinforcement learning, where alignment keeps a Unitree Go1 policy robust when a sensor modality is dropped.
@@ -392,6 +393,7 @@
   <!-- The Talks Section -->
   <div class="w3-container w3-light-grey w3-padding-32" id="talks">
     <h2>Talks</h2>
+      <p><li> 05/2026, UniOMA poster at the <a href="https://openreview.net/forum?id=rcc5qZ6CtV">ICRA 2026 &ldquo;From Data to Decisions&rdquo; Workshop</a> (Poster Session 2) and ICRA 2026 Late-Breaking Results.</li></p>
       <p><li> 07/2022, SpaceMAP: Visualizing High-dimensional Data by Space Expansion at <a href="https://icml.cc/virtual/2022/poster/18169">ICML 2022, Baltimore, US</a>.</li></p>
   </div>
  <!-- The Publications Section -->
@@ -400,6 +402,14 @@
     <h4> Conference Papers:</h4>
 
     <ol>
+
+        <p>
+      <li><strong>UniOMA: Unified Optimal-Transport Multi-Modal Structural Alignment for Robot Perception</strong>
+      <br>
+      <strong>X. Zu</strong>, K. S. Luck, S. Yu
+      <br>
+      <em>ICRA 2026 Workshop &ldquo;From Data to Decisions&rdquo;</em> &amp; <em>ICRA 2026 Late-Breaking Results</em> | <a style="color: #447ec9" href="https://openreview.net/forum?id=rcc5qZ6CtV">Paper</a>
+      </p>
 
         <p>
       <li><strong>cHeartFlow: Synthesizing cardiac MR images from sketches</strong>
