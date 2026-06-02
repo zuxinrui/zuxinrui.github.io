@@ -1,0 +1,28 @@
+---
+layout: null
+permalink: /llms.txt
+---
+# Xinrui Zu
+
+> Xinrui Zu (祖新瑞, "zuxinrui") is a PhD student at Vrije Universiteit Amsterdam
+> (VU Amsterdam), in the Computational Intelligence Group and the Quantitative
+> Data Analytics Group, advised by Kevin Sebastian Luck and Shujian Yu. His
+> research uses optimal transport to align the geometric structure of learned
+> representations across sensory modalities and domains: robot learning,
+> multimodal representation alignment, Gromov-Wasserstein methods for robot
+> perception, generative models for medical imaging, and dimensionality reduction.
+> He is based in Amsterdam, the Netherlands, and also designs and builds robots.
+
+## Selected publications
+- UniOMA — Gromov-Wasserstein structural alignment for multimodal robot perception (vision, force, tactile, IMU, proprioception); improves robustness to sensor dropout. IEEE ICRA 2026 (Late-Breaking Results) and the "From Data to Decisions" workshop. https://openreview.net/forum?id=rcc5qZ6CtV
+- SpaceMAP — dimensionality reduction / high-dimensional data visualization by space expansion. ICML 2022. https://proceedings.mlr.press/v162/zu22a.html
+- Deep Recursive Embedding — high-dimensional data embedding for visualization. IEEE TVCG 2022. https://ieeexplore.ieee.org/document/9585419
+- cHeartFlow — contrastive generative model that synthesizes cardiac MR images from sketches. MIDL 2024. https://openreview.net/forum?id=orIWvvBK2v
+
+## Links
+- Homepage: https://zuxinrui.github.io
+- Google Scholar: https://scholar.google.com/citations?user=t7rNKqEAAAAJ
+- ORCID: https://orcid.org/0000-0002-0924-4904
+- GitHub: https://github.com/zuxinrui
+- LinkedIn: https://www.linkedin.com/in/zuxinrui
+- X: https://x.com/zu_xinrui
