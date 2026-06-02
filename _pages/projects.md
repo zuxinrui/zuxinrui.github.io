@@ -5,7 +5,7 @@ permalink: /projects/
 description: Robot learning, generative models, representation geometry — and robots built from scratch.
 nav: true
 nav_order: 3
-display_categories: ["robot learning", "medical imaging", "dimensionality reduction", "hardware & robots"]
+display_categories: ["robot learning", "generative models", "dimensionality reduction", "hardware & robots"]
 horizontal: false
 ---
 

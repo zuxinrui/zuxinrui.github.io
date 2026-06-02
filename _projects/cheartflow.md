@@ -3,8 +3,8 @@ layout: page
 title: cHeartFlow
 description: Synthesizing cardiac MR images from sketches (MIDL 2024)
 img: assets/img/Fig1_v4.png
-importance: 1
-category: medical imaging
+importance: 2
+category: generative models
 related_publications: true
 ---
 
