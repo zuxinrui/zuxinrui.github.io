@@ -25,11 +25,15 @@ latest_posts:
   enabled: false
 ---
 
+<div class="intro" markdown="1">
+
 **Xinrui Zu** (祖新瑞) is a PhD student at **Vrije Universiteit Amsterdam**, jointly in the [Computational Intelligence Group](https://cs.vu.nl/ci/) and the [Quantitative Data Analytics Group](https://vu-qda.github.io/), advised by Dr. [Kevin Sebastian Luck](https://kevin-luck.com/) and Dr. [Shujian Yu](https://sjyucnel.github.io/). He studies the **geometry of learned representations** — how perception is structured inside neural networks — and uses **optimal transport** to align that structure across sensory modalities (vision, force, tactile, IMU, proprioception) and across domains (medical imaging and robotics).
 
 The same idea threads through his work: a Gromov–Wasserstein regularizer for robot perception (**UniOMA**, ICRA 2026), optimal-transport flows for medical image synthesis, and embedding methods that preserve structure under dimensionality reduction (**SpaceMAP**, ICML 2022; **Deep Recursive Embedding**, IEEE TVCG 2022). Before his PhD he was a research assistant at [TU Delft, Imaging Physics](https://www.tudelft.nl/tnw/over-faculteit/afdelingen/imphys) with Dr. [Qian Tao](https://www.tudelft.nl/tnw/over-faculteit/afdelingen/imphys/about-the-department/tao-qian), earned an MSc in Robotics & Mechatronics at the [University of Twente](https://www.ram.eemcs.utwente.nl), and a BSc in Theoretical & Applied Mechanics at [Fudan University](https://en.wikipedia.org/wiki/Fudan_University). And because alignment shouldn’t stay theoretical, he also **builds the robots** — modular manipulators, autonomous vehicles, and the sensors they learn from.
 
 Feel free to reach out for collaborations or a chat about optimal transport, multimodal robot learning, or generative models.
+
+</div>
 
 <br>
 
@@ -94,6 +98,9 @@ Xinrui Zu develops optimal-transport methods — primarily Gromov–Wasserstein 
 </script>
 
 <style>
+/* Larger intro/bio paragraphs on the homepage (one size up) */
+.post .intro p { font-size: 1.15rem; line-height: 1.7; }
+
 /* Enlarge selected-publication preview thumbnails (~2x) for a stronger first impression */
 @media (min-width: 576px) {
   ol.bibliography .row > .col-sm-2.abbr { flex: 0 0 32%; max-width: 32%; }

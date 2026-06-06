@@ -5,7 +5,7 @@
 title: blank # the website title (if blank, full name will be used instead)
 first_name: Xinrui
 middle_name:
-last_name: Zu
+last_name: Zu (俎新瑞)
 contact_note: >
   The fastest way to reach me is by email.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
@@ -15,7 +15,7 @@ footer_text: >
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
 keywords: Xinrui Zu, zuxinrui, 祖新瑞, robot learning, multimodal representation learning, optimal transport, Gromov-Wasserstein, generative models, dimensionality reduction, Vrije Universiteit Amsterdam, UniOMA, SpaceMAP, Deep Recursive Embedding
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: 🤖 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: icon.png # favicon image in /assets/img/ (or set an emoji here to use an emoji favicon)
 
 url: https://zuxinrui.github.io # the base hostname & protocol for your site
 baseurl: "" # the subpath of your site, e.g. /blog/. Leave blank for root
