@@ -1,8 +1,8 @@
 metadata:
-  last_updated: '2026-06-05'
+  last_updated: '2026-06-08'
 papers:
   t7rNKqEAAAAJ:2osOgNQ5qMEC:
-    citations: 18
+    citations: 19
     title: Deep recursive embedding for high-dimensional data
     year: '2021'
   t7rNKqEAAAAJ:IjCSPb-OGe4C:
@@ -28,6 +28,10 @@ papers:
   t7rNKqEAAAAJ:YsMSGLbcyi4C:
     citations: 0
     title: 'OVA-IB: One vs All Information Bottleneck for Multi-Modal Alignment'
+    year: '2026'
+  t7rNKqEAAAAJ:eQOLeE2rZwMC:
+    citations: 0
+    title: Reinforcement Learning from Cross-domain Videos with Video Prediction Model
     year: '2026'
   t7rNKqEAAAAJ:qjMakFHDy7sC:
     citations: 0
