@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-24'
+  last_updated: '2026-07-01'
 papers:
   t7rNKqEAAAAJ:2osOgNQ5qMEC:
     citations: 19
@@ -9,17 +9,25 @@ papers:
     citations: 0
     title: Fast and Precise Lung CT Image Generation via Diffusion Models
     year: '2023'
+  t7rNKqEAAAAJ:LkGwnXOMwfcC:
+    citations: 0
+    title: 'Modularized Reinforcement Learning on LLMs: From MDP Creation to Exploration and Learning'
+    year: '2026'
   t7rNKqEAAAAJ:Tyk-4Ss8FVUC:
     citations: 1
     title: 'COT Flow: Learning Optimal-Transport Image Sampling and Editing by Contrastive Pairs'
     year: '2024'
   t7rNKqEAAAAJ:UeHWp8X0CEIC:
-    citations: 17
+    citations: 18
     title: 'SpaceMAP: Visualizing High-Dimensional Data by Space Expansion.'
     year: '2022'
   t7rNKqEAAAAJ:W7OEmFMy1HYC:
     citations: 1
     title: "It\u2019s All in the Details: Guiding Fine-Feature Characteristics in Artificial Medical Images using Diffusion Models"
+    year: '2025'
+  t7rNKqEAAAAJ:WF5omc3nYNoC:
+    citations: 1037
+    title: 'Kimi k1. 5: Scaling reinforcement learning with llms'
     year: '2025'
   t7rNKqEAAAAJ:Y0pCki6q_DkC:
     citations: 0
@@ -29,6 +37,10 @@ papers:
     citations: 0
     title: 'OVA-IB: One vs All Information Bottleneck for Multi-Modal Alignment'
     year: '2026'
+  t7rNKqEAAAAJ:_FxGoFyzp5QC:
+    citations: 2459
+    title: Kimi-vl technical report
+    year: '2025'
   t7rNKqEAAAAJ:eQOLeE2rZwMC:
     citations: 0
     title: Reinforcement Learning from Cross-domain Videos with Video Prediction Model
@@ -37,6 +49,10 @@ papers:
     citations: 0
     title: 'SpaceMAP: Visualizing Any Data in 2-dimension by Space Expansion'
     year: Unknown Year
+  t7rNKqEAAAAJ:ufrVoPGSRksC:
+    citations: 4
+    title: Long Duration Variability and Spectrum of Mrk 421
+    year: '2008'
   t7rNKqEAAAAJ:zYLM7Y9cAGgC:
     citations: 0
     title: 'cHeartFlow: Synthesizing cardiac MR images from sketches'
