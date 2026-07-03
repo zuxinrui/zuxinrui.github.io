@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-07-01'
+  last_updated: '2026-07-03'
 papers:
   t7rNKqEAAAAJ:2osOgNQ5qMEC:
     citations: 19
@@ -26,7 +26,7 @@ papers:
     title: "It\u2019s All in the Details: Guiding Fine-Feature Characteristics in Artificial Medical Images using Diffusion Models"
     year: '2025'
   t7rNKqEAAAAJ:WF5omc3nYNoC:
-    citations: 1037
+    citations: 1036
     title: 'Kimi k1. 5: Scaling reinforcement learning with llms'
     year: '2025'
   t7rNKqEAAAAJ:Y0pCki6q_DkC:
@@ -38,7 +38,7 @@ papers:
     title: 'OVA-IB: One vs All Information Bottleneck for Multi-Modal Alignment'
     year: '2026'
   t7rNKqEAAAAJ:_FxGoFyzp5QC:
-    citations: 2459
+    citations: 2570
     title: Kimi-vl technical report
     year: '2025'
   t7rNKqEAAAAJ:eQOLeE2rZwMC:
