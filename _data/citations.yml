@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-07-03'
+  last_updated: '2026-07-08'
 papers:
   t7rNKqEAAAAJ:2osOgNQ5qMEC:
     citations: 19
@@ -25,10 +25,6 @@ papers:
     citations: 1
     title: "It\u2019s All in the Details: Guiding Fine-Feature Characteristics in Artificial Medical Images using Diffusion Models"
     year: '2025'
-  t7rNKqEAAAAJ:WF5omc3nYNoC:
-    citations: 1036
-    title: 'Kimi k1. 5: Scaling reinforcement learning with llms'
-    year: '2025'
   t7rNKqEAAAAJ:Y0pCki6q_DkC:
     citations: 0
     title: 'UniOMA: Unified Optimal-Transport Multi-Modal Structural Alignment for Robot Perception'
@@ -37,10 +33,6 @@ papers:
     citations: 0
     title: 'OVA-IB: One vs All Information Bottleneck for Multi-Modal Alignment'
     year: '2026'
-  t7rNKqEAAAAJ:_FxGoFyzp5QC:
-    citations: 2570
-    title: Kimi-vl technical report
-    year: '2025'
   t7rNKqEAAAAJ:eQOLeE2rZwMC:
     citations: 0
     title: Reinforcement Learning from Cross-domain Videos with Video Prediction Model
