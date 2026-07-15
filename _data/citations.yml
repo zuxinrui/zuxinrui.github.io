@@ -1,8 +1,8 @@
 metadata:
-  last_updated: '2026-07-08'
+  last_updated: '2026-07-15'
 papers:
   t7rNKqEAAAAJ:2osOgNQ5qMEC:
-    citations: 19
+    citations: 20
     title: Deep recursive embedding for high-dimensional data
     year: '2021'
   t7rNKqEAAAAJ:IjCSPb-OGe4C:
@@ -41,10 +41,6 @@ papers:
     citations: 0
     title: 'SpaceMAP: Visualizing Any Data in 2-dimension by Space Expansion'
     year: Unknown Year
-  t7rNKqEAAAAJ:ufrVoPGSRksC:
-    citations: 4
-    title: Long Duration Variability and Spectrum of Mrk 421
-    year: '2008'
   t7rNKqEAAAAJ:zYLM7Y9cAGgC:
     citations: 0
     title: 'cHeartFlow: Synthesizing cardiac MR images from sketches'
