@@ -1,8 +1,12 @@
 metadata:
-  last_updated: '2026-07-15'
+  last_updated: '2026-09-07'
 papers:
+  t7rNKqEAAAAJ:0EnyYjriUFMC:
+    citations: 409
+    title: 'Kimi k2. 5: Visual agentic intelligence'
+    year: '2026'
   t7rNKqEAAAAJ:2osOgNQ5qMEC:
-    citations: 20
+    citations: 21
     title: Deep recursive embedding for high-dimensional data
     year: '2021'
   t7rNKqEAAAAJ:IjCSPb-OGe4C:
@@ -10,17 +14,25 @@ papers:
     title: Fast and Precise Lung CT Image Generation via Diffusion Models
     year: '2023'
   t7rNKqEAAAAJ:LkGwnXOMwfcC:
-    citations: 0
+    citations: 1
     title: 'Modularized Reinforcement Learning on LLMs: From MDP Creation to Exploration and Learning'
     year: '2026'
+  t7rNKqEAAAAJ:Se3iqnhoufwC:
+    citations: 0
+    title: 'Impact of post-abortion family planning services on contraceptive use and abortion rate among young women in three cities of China: a cluster randomised trial-PAFP Study'
+    year: '2008'
   t7rNKqEAAAAJ:Tyk-4Ss8FVUC:
     citations: 1
     title: 'COT Flow: Learning Optimal-Transport Image Sampling and Editing by Contrastive Pairs'
     year: '2024'
   t7rNKqEAAAAJ:UeHWp8X0CEIC:
-    citations: 18
+    citations: 19
     title: 'SpaceMAP: Visualizing High-Dimensional Data by Space Expansion.'
     year: '2022'
+  t7rNKqEAAAAJ:UebtZRa9Y70C:
+    citations: 39
+    title: 'Kimi k3: Open frontier intelligence'
+    year: '2026'
   t7rNKqEAAAAJ:W7OEmFMy1HYC:
     citations: 1
     title: "It\u2019s All in the Details: Guiding Fine-Feature Characteristics in Artificial Medical Images using Diffusion Models"
@@ -37,9 +49,13 @@ papers:
     citations: 0
     title: Reinforcement Learning from Cross-domain Videos with Video Prediction Model
     year: '2026'
-  t7rNKqEAAAAJ:qjMakFHDy7sC:
+  t7rNKqEAAAAJ:hqOjcs7Dif8C:
     citations: 0
     title: 'SpaceMAP: Visualizing Any Data in 2-dimension by Space Expansion'
+    year: Unknown Year
+  t7rNKqEAAAAJ:roLk4NBRz8UC:
+    citations: 42
+    title: Kimi-vl technical report (2025)
     year: Unknown Year
   t7rNKqEAAAAJ:zYLM7Y9cAGgC:
     citations: 0
