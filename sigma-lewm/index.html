@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Σ-LeWM: Learning World Models via S-Information for Robot Control. Forward, backward and inverse dynamics are three readings of one transition.">
+<meta property="og:title" content="Σ-LeWM">
+<meta property="og:description" content="Learning World Models via S-Information for Robot Control">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="theme-color" content="#04060c">
+<title>Σ-LeWM</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#f6f6f8; --ink:#14161c; --muted:#697084; --rule:#dfe2ea; --soft:#eceef3; --card:#ffffff;
+  --fwd:#2b5fd9; --bwd:#6b4fd0; --inv:#cf463d; --accent:#2b5fd9; --space:#04060c; --onspace:#eef2ff; --onspace-muted:#8d95a8;
+  --display:"Jost","Futura","Century Gothic",sans-serif;
+  --body:"Source Serif 4","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--ground:#0b0d14;--ink:#e8eaf1;--muted:#8d95a8;--rule:#232838;--soft:#131724;--card:#10141f;--fwd:#7aa2ff;--bwd:#a892f2;--inv:#f27d74;--accent:#7aa2ff}
+}
+:root[data-theme="dark"]{--ground:#0b0d14;--ink:#e8eaf1;--muted:#8d95a8;--rule:#232838;--soft:#131724;--card:#10141f;--fwd:#7aa2ff;--bwd:#a892f2;--inv:#f27d74;--accent:#7aa2ff}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.65;font-weight:400}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.col{max-width:820px;margin:0 auto;padding-inline:20px}
+b,strong{font-weight:600}
+h2{font-family:var(--display);font-weight:400;font-size:30px;line-height:1.2;margin:0 0 18px;letter-spacing:.005em;text-wrap:balance}
+h3{font-family:var(--display);font-weight:500;font-size:19px;margin:0 0 6px}
+p{margin:0 0 16px}p:last-child{margin-bottom:0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+section{padding-block:56px;border-top:1px solid var(--rule)}
+section .eyebrow{display:block;margin-bottom:14px}
+.mono{font-family:var(--mono)}
+.mi{font-family:var(--mono);font-size:.92em;white-space:nowrap}
+sub{font-size:.7em;line-height:0}
+
+/* hero */
+.hero{background:var(--space);color:var(--onspace);padding-block:40px 44px}
+.hero .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.hero .top .eyebrow{color:var(--onspace-muted)}
+.wordmark{font-family:var(--display);font-weight:300;font-size:22px;letter-spacing:.06em;color:var(--onspace)}
+.frame{position:relative;width:100%;aspect-ratio:2.35/1;background:#04060c;border:1px solid #1b2130;overflow:hidden;border-radius:2px}
+canvas#stage{position:absolute;left:0;top:50%;width:100%;aspect-ratio:16/9;height:auto;transform:translateY(-56%);display:block}
+.controls{display:flex;gap:18px;align-items:center;margin-top:8px;padding-inline:2px;opacity:.55;transition:opacity .25s}
+.controls:hover,.controls:focus-within{opacity:1}
+.controls button{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--onspace-muted);background:none;border:0;padding:4px 0;cursor:pointer}
+.controls button:hover{color:var(--onspace)}
+.controls button:focus-visible,.controls input:focus-visible{outline:1px solid #7aa2ff;outline-offset:3px}
+.controls button[aria-pressed="true"]{color:#7aa2ff}
+.scrub{display:flex;align-items:center;flex:1 1 200px;min-width:0}
+.scrub input{-webkit-appearance:none;appearance:none;flex:1;min-width:0;height:2px;background:#1e2433;border-radius:1px;cursor:pointer}
+.scrub input::-webkit-slider-thumb{-webkit-appearance:none;width:8px;height:8px;border-radius:50%;background:#8d95a8;border:0}
+.scrub input::-moz-range-thumb{width:8px;height:8px;border-radius:50%;background:#8d95a8;border:0}
+.scrub input::-moz-range-track{height:2px;background:#1e2433}
+.tc{display:none}
+.hero h1{text-align:center;font-family:var(--display);font-weight:300;font-size:clamp(28px,4.6vw,44px);line-height:1.18;margin:40px 0 22px;letter-spacing:.005em;text-wrap:balance}
+.hero h1 b{font-weight:400}
+.hero .sub{text-align:center;font-family:var(--display);font-weight:300;font-size:clamp(17px,2.4vw,22px);color:var(--onspace-muted);margin:0 0 22px}
+.authors{text-align:center;font-family:var(--display);font-weight:400;font-size:18px;line-height:1.8;color:var(--onspace);margin:0 auto 6px;max-width:640px}
+.authors span{white-space:nowrap}
+.authors a.author{color:var(--onspace);text-decoration:none}
+.authors a.author:hover{color:#7aa2ff;text-decoration:underline}
+.authors sup{color:var(--onspace-muted);font-size:.65em;margin-left:1px}
+.affil{text-align:center;font-family:var(--display);font-weight:300;font-size:15.5px;color:var(--onspace-muted);margin:0 0 26px}
+.links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.links a{display:inline-flex;align-items:center;gap:7px;padding:9px 22px;border-radius:6px;font-family:var(--display);font-weight:500;font-size:16px;line-height:1;letter-spacing:.01em;background:var(--fwd);color:#fff;border:2px solid var(--fwd);transition:background .2s,border-color .2s}
+.links a:hover{background:#1f4bc0;border-color:#1f4bc0;text-decoration:none}
+.links a svg{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.links a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+.lead{font-family:var(--display);font-weight:300;font-size:22px;line-height:1.4;color:var(--muted);margin:-6px 0 18px;text-wrap:balance}
+/* one sentence */
+.lede{font-size:23px;line-height:1.5;font-family:var(--body);font-weight:400;text-wrap:pretty}
+.lede em{font-style:italic}
+
+/* directions */
+.dirs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.dir{background:var(--card);border:1px solid var(--rule);padding:22px 20px 18px;display:flex;flex-direction:column;gap:10px;border-radius:2px}
+.dir svg{width:64px;height:64px;overflow:visible}
+.dir .name{font-family:var(--display);font-weight:500;font-size:18px;display:flex;justify-content:space-between;align-items:baseline}
+.dir .name small{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);font-weight:400}
+.dir .mi{display:block;font-size:14px;color:var(--ink)}
+.dir p{font-size:15.5px;line-height:1.55;color:var(--muted);margin:0}
+.dir.f{border-top:3px solid var(--fwd)}.dir.b{border-top:3px solid var(--bwd)}.dir.i{border-top:3px solid var(--inv)}
+.dir.f .name{color:var(--fwd)}.dir.b .name{color:var(--bwd)}.dir.i .name{color:var(--inv)}
+@media (max-width:640px){.dirs{grid-template-columns:1fr}}
+.eq{margin:30px 0 8px;padding:24px 20px;background:var(--soft);border-radius:2px;text-align:center;font-family:var(--body);font-size:22px;line-height:1.5;overflow-x:auto}
+.eq .mono{font-size:.92em}
+.eq .f{color:var(--fwd)}.eq .b{color:var(--bwd)}.eq .i{color:var(--inv)}
+.eq .big{font-family:var(--display);font-size:1.5em;vertical-align:-.08em;font-weight:300}
+.eqcap{font-size:15.5px;color:var(--muted);text-align:center}
+
+figure{margin:26px 0 0}
+figure img{display:block;width:100%;max-width:100%;height:auto;border:1px solid var(--rule);background:#fff;border-radius:2px}
+figcaption{font-size:14.5px;line-height:1.5;color:var(--muted);margin-top:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-top:6px}
+.num{padding:22px 16px 20px;border-left:1px solid var(--rule);display:flex;flex-direction:column;gap:4px}
+.num:first-child{border-left:0}
+.num .v{font-family:var(--display);font-weight:300;font-size:40px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.num .v small{font-size:.5em;color:var(--muted)}
+.num .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.num .d{font-size:14px;color:var(--muted);line-height:1.45}
+@media (max-width:720px){.nums{grid-template-columns:1fr 1fr}.num:nth-child(3){border-left:0}.num:nth-child(n+3){border-top:1px solid var(--rule)}}
+
+table{border-collapse:collapse;width:100%;font-size:15.5px;margin-top:26px;font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400;text-align:right;padding:8px 10px;border-bottom:1px solid var(--rule)}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+td{padding:9px 10px;border-bottom:1px solid var(--rule);text-align:right}
+tr.ours td{font-weight:600;color:var(--accent)}
+td.best{font-weight:600}
+.tcap{font-size:14.5px;color:var(--muted);margin-top:10px}
+
+/* ablation bars */
+.abl{display:flex;flex-direction:column;gap:8px;margin-top:22px;font-family:var(--mono);font-size:13px}
+.abl .row{display:grid;grid-template-columns:150px 1fr 44px;align-items:center;gap:12px}
+.abl .bar{height:14px;background:var(--soft);border-radius:1px;overflow:hidden}
+.abl .bar i{display:block;height:100%;background:var(--muted)}
+.abl .row.ours .bar i{background:var(--accent)}
+.abl .row.ours{color:var(--accent);font-weight:500}
+.abl .v{text-align:right}
+@media (max-width:520px){.abl .row{grid-template-columns:110px 1fr 40px}}
+
+pre{font-family:var(--mono);font-size:13px;line-height:1.6;background:var(--soft);padding:18px 20px;overflow-x:auto;border-radius:2px;margin:0}
+footer{padding-block:36px 60px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted);line-height:1.6}
+</style>
+<style>html,body{margin:0;padding:0}[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+<div class="hero">
+  <div class="col">
+    <div class="frame" id="frame"><canvas id="stage" aria-label="Σ-LeWM title animation: one shape read as Σ, W and M"></canvas></div>
+    <div class="controls">
+      <button id="play">▶ Replay</button>
+      <button id="sound" aria-pressed="false">Sound: off</button>
+      <button id="loop" aria-pressed="false" hidden>Loop: off</button>
+      <span hidden><input type="radio" name="style" id="sA" value="A" checked><input type="radio" name="style" id="sB" value="B"><input type="radio" name="style" id="sC" value="C"></span>
+      <div class="scrub"><input type="range" id="scrub" min="0" max="17.3" step="0.01" value="0" aria-label="Timeline"><span class="tc" id="tc">0.00 / 17.30 s</span></div>
+    </div>
+    <h1><b>Σ-LeWM</b>: Learning World Models via S-Information for Robot Control</h1>
+    <p class="authors"><span><a class="author" href="https://zuxinrui.github.io/" target="_blank" rel="noopener">Xinrui Zu</a>,</span> <span><a class="author" href="https://scholar.google.com/citations?user=UHWkDfkAAAAJ&hl=en" target="_blank" rel="noopener">Michael Przystupa</a>,</span> <span><a class="author" href="https://yangzhao-666.github.io/" target="_blank" rel="noopener">Zhao Yang</a>,</span> <span><a class="author" href="https://sjyucnel.github.io/" target="_blank" rel="noopener">Shujian Yu</a>,</span> <span><a class="author" href="https://kevin-luck.com/" target="_blank" rel="noopener">Kevin Sebastian Luck</a></span></p>
+    <p class="affil">Vrije Universiteit Amsterdam, The Netherlands</p>
+    <div class="links">
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>Paper</a>
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M5 4l7 8-7 8"/><path d="M12 12l7-8M12 12l7 8"/></svg>arXiv</a>
+      <a href="https://github.com/zuxinrui/sigma-lewm"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>Code</a>
+      <a href="https://huggingface.co/zuxinrui/sigma-lewm"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 10.5v-.5M15.5 10.5v-.5"/><path d="M8 14c1 1.8 2.4 2.6 4 2.6s3-.8 4-2.6"/></svg>Hugging Face</a>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+
+<section>
+  <span class="eyebrow">In one sentence</span>
+  <p class="lede">A decoder-free latent world model is trained not only to predict the <em>next</em> latent state, but also to explain the <em>current</em> state from where it lands and to recover the <em>action</em> that connects them. Together, the three objectives maximise the S-information of the transition <span class="mi">(Z<sub>t</sub>, A<sub>t</sub>, Z<sub>t+1</sub>)</span> — and the resulting latent space plans better, further ahead, and with up to 7.5× less search.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Gear assembly · IsaacSim</span>
+  <h2>Seat the peg in the hub</h2>
+  <p>Same encoder, same planner, same data — only the training objective differs. Six of thirty test episodes, side by side: LeWM solves 1 of 30, Σ-LeWM solves 21 of 30.</p>
+  <figure style="margin-top:22px"><img src="fig/gear.gif" alt="Animated grid of gear-assembly episodes: LeWM solves 1 of 30, Σ-LeWM solves 21 of 30" loading="lazy"></figure>
+</section>
+
+<section>
+  <span class="eyebrow">The idea</span>
+  <h2>One transition, three directions</h2>
+  <p class="lead">Forward, backward and inverse dynamics are three readings of one transition.</p>
+  <p>LeWorldModel (LeWM) learns a latent transition <span class="mi">f(z<sub>t</sub>, a<sub>t</sub>) → z<sub>t+1</sub></span> without a decoder. Σ-LeWM adds two auxiliary predictors, used only during training, so that every variable of the transition is predictable from the other two. Each predictor is a lower bound on a mutual-information term, and the three terms are the three orientations of one shape.</p>
+  <div class="dirs">
+    <div class="dir f">
+      <div class="name">forward <small>MSE + SIGReg</small></div>
+      <span class="mi">I<sub>F</sub> = I(Z<sub>t+1</sub>; Z<sub>t</sub>, A<sub>t</sub>)</span>
+      <p>Predict the next latent from the current latent and the action. This is the standard LeWM objective, and the only predictor used at test time.</p>
+    </div>
+    <div class="dir b">
+      <div class="name">backward <small>DCL</small></div>
+      <span class="mi">I<sub>B</sub> = I(Z<sub>t</sub>; Z<sub>t+1</sub>, A<sub>t</sub>)</span>
+      <p>Explain the current latent from where the action lands. A contrastive backward-dynamics head keeps states that lead to the same outcome close together.</p>
+    </div>
+    <div class="dir i">
+      <div class="name">inverse <small>DCL</small></div>
+      <span class="mi">I<sub>I</sub> = I(A<sub>t</sub>; Z<sub>t</sub>, Z<sub>t+1</sub>)</span>
+      <p>Recover the action from two consecutive latents. The embedding must keep whatever the action changed — the control-relevant structure.</p>
+    </div>
+  </div>
+  <div class="eq">
+    <span class="f">I<sub>F</sub></span> + <span class="b">I<sub>B</sub></span> + <span class="i">I<sub>I</sub></span>
+    &nbsp;=&nbsp; TC(Z<sub>t</sub>, A<sub>t</sub>, Z<sub>t+1</sub>) + DTC(Z<sub>t</sub>, A<sub>t</sub>, Z<sub>t+1</sub>)
+    &nbsp;=&nbsp; <span class="big">Σ</span>(Z<sub>t</sub>, A<sub>t</sub>, Z<sub>t+1</sub>)
+  </div>
+  <p class="eqcap">The sum of the three directional terms is the total correlation plus the dual total correlation — the <b>S-information</b>, written Σ. Hence the name.</p>
+  <figure>
+    <img src="fig/fig1.png" alt="Diagram of the forward, backward and inverse predictors trained on the shared encoder">
+    <figcaption>Fig. 1 — One shared encoder, three predictors. Forward dynamics is trained with the LeWM loss; backward and inverse dynamics with the decoupled contrastive loss (DCL). At test time only forward dynamics is used, so planning is identical to LeWM: CEM in latent space.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <span class="eyebrow">Results</span>
+  <h2>Better plans, longer horizons, less search</h2>
+  <div class="nums">
+    <div class="num"><span class="v">93.6<small>%</small></span><span class="k">Push-T success</span><span class="d">vs. 85.2% for LeWM at the same planner setting (h=5, CEM30).</span></div>
+    <div class="num"><span class="v">+18<small> pp</small></span><span class="k">Long horizon</span><span class="d">Gain over random at h=15 on Cube; the margin over LeWM grows with the horizon.</span></div>
+    <div class="num"><span class="v">7.5<small>×</small></span><span class="k">Faster planning</span><span class="d">4 CEM iterations already match LeWM at 30 on Push-T; 8 iterations beat it.</span></div>
+    <div class="num"><span class="v">73<small>%</small></span><span class="k">Gear assembly</span><span class="d">Strict success on a sealed gear-assembly task, vs. 10% for LeWM (IsaacSim).</span></div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Method</th><th>Push-T</th><th>Cube</th><th>TwoRoom</th><th>Reacher</th></tr></thead>
+    <tbody>
+      <tr><td>Random policy (floor)</td><td>2.0</td><td>43.6</td><td>23.6</td><td>13.6</td></tr>
+      <tr><td>LeWM</td><td>85.2</td><td>64.8</td><td>90.4</td><td>87.2</td></tr>
+      <tr><td>Sub-JEPA</td><td>93.2</td><td>69.2</td><td class="best">94.0</td><td>84.0</td></tr>
+      <tr><td>RC-aux</td><td>—</td><td>68.4</td><td>94.8</td><td>84.8</td></tr>
+      <tr class="ours"><td>Σ-LeWM (ours)</td><td>93.6</td><td>82.8</td><td>91.2</td><td>88.0</td></tr>
+    </tbody>
+  </table></div>
+  <p class="tcap">Table I — Success rate (%) on the four standard LeWM benchmarks, same CEM planner (h=5, 30 iterations), 5 seeds × 50 episodes.</p>
+  <div class="two">
+    <figure><img src="fig/fig2.png" alt="Overview of main results: longer horizon, planning speed, robot manipulation, task difficulty"><figcaption>Fig. 2 — Longer horizons (a), planning speed (b), sealed gear assembly (c) and tightening success tolerance (d).</figcaption></figure>
+    <figure><img src="fig/fig6.png" alt="Gear assembly and Franka stacking results"><figcaption>Fig. 6 — Two IsaacSim manipulation tasks with strict success criteria, against LeWM, AC-MTM and SMWM.</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Why it works</span>
+  <h2>The latent space keeps what control needs</h2>
+  <p>PCA of the frozen latents, coloured by physical quantities. With the backward and inverse objectives, block height, gripper closure and task success each occupy a compact, separable region; one-step reachability from a state forms a clean fan of sixteen action directions. A learned GC-IDM planner also does better on these latents than on LeWM's (Cube: 97.6% vs. 90.4%).</p>
+  <figure><img src="fig/fig7.png" alt="PCA visualisations of LeWM and Σ-LeWM latents coloured by physical quantities"><figcaption>Fig. 7 — Push-T reachability, Cube block height, Cube gripper state and Gear task-relevance. Top row LeWM, bottom row Σ-LeWM.</figcaption></figure>
+  <h3 style="margin-top:34px">Both <b style="color:var(--bwd);font-weight:600">backward</b> and <b style="color:var(--inv);font-weight:600">inverse</b> are necessary</h3>
+  <p style="font-size:16px;color:var(--muted)">Cube, h=5, success %. Contrastive (DCL) variants; adding either auxiliary term helps, adding both helps most.</p>
+  <div class="abl" role="table" aria-label="Ablation on Cube">
+    <div class="row"><span>LeWM base</span><span class="bar"><i style="width:64%"></i></span><span class="v">64</span></div>
+    <div class="row"><span>+ inverse</span><span class="bar"><i style="width:72%"></i></span><span class="v">72</span></div>
+    <div class="row"><span>+ backward</span><span class="bar"><i style="width:80%"></i></span><span class="v">80</span></div>
+    <div class="row ours"><span>+ both (Σ-LeWM)</span><span class="bar"><i style="width:84%"></i></span><span class="v">84</span></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Citation</span>
+  <pre>@article{sigma-lewm2027,
+  title     = {{\Sigma}-LeWM: Learning World Models via S-Information for Robot Control},
+  author    = {Zu, Xinrui and Przystupa, Michael and Yang, Zhao and Yu, Shujian and Luck, Kevin Sebastian},
+  year      = {2027}
+}</pre>
+</section>
+
+</div>
+<footer><div class="col">The title animation at the top is rendered live in your browser: Σ, W and M are one five-point polyline at 0°, +90° and 270°, and the V at its centre is the two-to-one structure of each mutual-information term. Figures are reproduced from the paper.</div></footer>
+<script>
+(function(){
+const cv=document.getElementById('stage'),ctx=cv.getContext('2d'),frame=document.getElementById('frame');
+const DUR=17.3,DEG=Math.PI/180;
+const c01=x=>x<0?0:x>1?1:x;
+const eIO3=x=>{x=c01(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const eIO4=x=>{x=c01(x);return x<.5?8*x*x*x*x:1-Math.pow(-2*x+2,4)/2};
+const eOut3=x=>1-Math.pow(1-c01(x),3);
+const eSine=x=>{x=c01(x);return -(Math.cos(Math.PI*x)-1)/2};
+const lerp=(a,b,k)=>a+(b-a)*k;
+
+const STYLES={
+ A:{bg:'#04060c',fg:[238,242,255],tint:[[122,162,255],[168,146,242],[242,125,116]],add:true,stars:340,spread:1,lag:1,glow:.10,dial:false,strokeBase:.30,pAlpha:1},
+ B:{bg:'#0b0705',fg:[255,241,220],tint:[[255,208,138],[255,157,92],[232,96,74]],add:true,stars:140,spread:2.3,lag:1.35,glow:.20,dial:false,strokeBase:.22,pAlpha:1},
+ C:{bg:'#eef0f3',fg:[16,19,26],tint:[[43,95,217],[107,79,208],[207,70,61]],add:false,stars:0,spread:.4,lag:.8,glow:0,dial:true,strokeBase:.92,pAlpha:.55}
+};
+let S=STYLES.A;
+
+const G=[[.4,.5],[-.4,.5],[0,0],[-.4,-.5],[.4,-.5]];
+// ---- timeline
+const PH=[1.0,3.0,5.0];            // the three "one-from-two" beats
+const MOVE=.60;                    // label rotation lead-in before each beat
+const NODE_OUT=6.15, SPIN=6.6, SPIN_D=1.10, TITLE=8.32, FULL_OUT=11.82, COLL=[11.92,12.77], SUB=12.87;
+const LOCK=[360,450,630],LOCKT=[SPIN+SPIN_D/3,SPIN+SPIN_D/2,SPIN+SPIN_D],SLOT=[-1.55,0,1.55];
+const ANG=['0°','90°','270°'],NAME=['forward dynamics','backward dynamics','inverse dynamics'];
+const MI=[[['I(Z','t+1'],['; Z','t'],[', A','t'],[')','']],[['I(Z','t'],['; Z','t+1'],[', A','t'],[')','']],[['I(A','t'],['; Z','t'],[', Z','t+1'],[')','']]];
+const VARS=[[['Z','t']],[['A','t']],[['Z','t+1']]];
+// node slots: 0 top-left, 1 top-right, 2 valley. Each beat every label steps slot -> slot-1
+const POS0=[0,1,2];
+
+function theta(t){return t<SPIN?270:270+360*eSine((t-SPIN)/SPIN_D)}
+function phase(t){ // k and blend toward k+1
+  for(let k=1;k<3;k++){if(t<PH[k]-MOVE)return{k:k-1,m:0};if(t<PH[k])return{k:k-1,m:eIO3((t-(PH[k]-MOVE))/MOVE)}}
+  return{k:2,m:0};
+}
+
+const STARS=[];(function(){let s=99;const rnd=()=>{s=(s*48271)%2147483647;return s/2147483647};
+  for(let i=0;i<400;i++)STARS.push({r:.06+1.05*Math.sqrt(rnd()),a:rnd()*6.2832,b:rnd()<.25?1:0})})();
+
+let W=0,H=0,CX=0,CY=0,U0=0,F=0,UT=0,capH=0,dpr=1,TX=[0,0,0],FX=[0,0,0],TXT=[],HY=[0,0];
+function layout(){
+  const r=frame.getBoundingClientRect();dpr=Math.min(window.devicePixelRatio||1,2);
+  W=Math.max(320,Math.round(r.width*dpr));H=Math.round(W*9/16);cv.width=W;cv.height=H;CX=W/2;CY=H/2;U0=H*.44;
+  const f0=100;ctx.font='300 '+f0+'px Jost, Futura, sans-serif';
+  const cap0=ctx.measureText('H').actualBoundingBoxAscent||70,ut0=cap0/.8,pad=f0*.07,gap=f0*.40,mw=s=>ctx.measureText(s).width;
+  // full name: Σigma LeWorldModel
+  const seq=[{g:0,w:.8*ut0},{sp:pad},{s:'igma'},{sp:gap},{s:'Le',keep:1},{sp:f0*.10},{g:1,w:ut0},{sp:pad},{s:'orld'},{sp:f0*.10},{g:2,w:ut0},{sp:pad},{s:'odel'}];
+  let total=0;for(const e of seq){if(e.s)e.w=mw(e.s);if(e.sp)e.w=e.sp;total+=e.w}
+  const k=(W*.74)/total;F=f0*k;capH=cap0*k;UT=ut0*k;
+  let x=CX-total*k/2;TXT=[];
+  for(const e of seq){if(e.g!=null)TX[e.g]=x+e.w*k/2;if(e.s)TXT.push({s:e.s,x,x2:x,keep:!!e.keep});x+=e.w*k}
+  // acronym: Σ-LeWM
+  const wLe=mw('Le')*k,s2=[.8*UT,.15*UT,.30*UT,.15*UT,wLe,F*.10,UT,.27*UT,UT],t2=s2.reduce((a,b)=>a+b,0);
+  let fx=CX-t2/2;FX[0]=fx+.4*UT;fx+=s2[0]+s2[1];HY=[fx,fx+s2[2]];fx+=s2[2]+s2[3];
+  for(const w of TXT)if(w.keep)w.x2=fx;fx+=s2[4]+s2[5];FX[1]=fx+.5*UT;fx+=s2[6]+s2[7];FX[2]=fx+.5*UT;
+}
+const gt={cx:0,cy:0,U:0};
+function groupT(g,t){
+  const e1=eIO3((t-SPIN)/.8),e2=eIO4((t-TITLE)/.85),e6=eIO4((t-COLL[0])/(COLL[1]-COLL[0]));
+  gt.cx=lerp(lerp(CX+SLOT[g]*U0*.62*e1,TX[g],e2),FX[g],e6);gt.cy=CY;gt.U=lerp(U0*(1-.38*e1),UT,e2);return gt;
+}
+const rgb=(c,a)=>'rgba('+(c[0]|0)+','+(c[1]|0)+','+(c[2]|0)+','+Math.max(0,Math.min(1,a)).toFixed(3)+')';
+const mix=(a,b,k)=>[lerp(a[0],b[0],k),lerp(a[1],b[1],k),lerp(a[2],b[2],k)];
+// text with subscripts, centred on x
+function tokens(tk,x,y,size,fam,wt,col){
+  const fb=wt+' '+size+'px '+fam,fs=wt+' '+(size*.62)+'px '+fam;let w=0;
+  for(const [a,b] of tk){ctx.font=fb;w+=ctx.measureText(a).width;if(b){ctx.font=fs;w+=ctx.measureText(b).width}}
+  let cx=x-w/2;ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillStyle=col;
+  for(const [a,b] of tk){ctx.font=fb;ctx.fillText(a,cx,y);cx+=ctx.measureText(a).width;if(b){ctx.font=fs;ctx.fillText(b,cx,y+size*.26);cx+=ctx.measureText(b).width}}
+}
+function polyPath(T,th,i0,i1){const c=Math.cos(th),s=Math.sin(th),st=i0<i1?1:-1;ctx.beginPath();
+  for(let i=i0;;i+=st){const x=G[i][0],y=G[i][1],px=T.cx+(x*c-y*s)*T.U,py=T.cy-(x*s+y*c)*T.U;i===i0?ctx.moveTo(px,py):ctx.lineTo(px,py);if(i===i1)break}}
+
+function render(t){
+  t=Math.max(0,Math.min(DUR,t));
+  ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;
+  ctx.fillStyle=S.bg;ctx.fillRect(0,0,W,H);
+  const e1=eIO3((t-SPIN)/.8),e2=eIO4((t-TITLE)/.85),e6=eIO4((t-COLL[0])/(COLL[1]-COLL[0])),e5=eOut3((t-SUB)/.7);
+  const tintK=.6*e1*(1-.35*e2);
+  const ph=phase(t),phCol=mix(S.tint[ph.k],S.tint[Math.min(2,ph.k+1)],ph.m);
+  const opK=eIO3((t-(PH[0]-.25))/.4)*(1-eIO3((t-NODE_OUT)/.4)); // how much the opening colour/nodes show
+  ctx.lineCap='round';ctx.lineJoin='miter';ctx.miterLimit=8;
+  if(S.glow>0){const g=ctx.createRadialGradient(CX,CY,0,CX,CY,U0*1.5);g.addColorStop(0,rgb(S.fg,S.glow*.6));g.addColorStop(1,rgb(S.fg,0));ctx.fillStyle=g;ctx.fillRect(0,0,W,H)}
+  if(S.dial){
+    ctx.strokeStyle=rgb(S.fg,.10);ctx.lineWidth=dpr;
+    for(let i=1;i<=4;i++){ctx.beginPath();ctx.arc(CX,CY,H*.155*i,0,6.2832);ctx.stroke()}
+    ctx.beginPath();ctx.moveTo(0,CY);ctx.lineTo(W,CY);ctx.moveTo(CX,0);ctx.lineTo(CX,H);ctx.stroke();
+    const a0=theta(t-.04)*DEG,R=H*.465;ctx.strokeStyle=rgb(S.fg,.32);ctx.beginPath();
+    for(let i=0;i<72;i++){const a=a0+i*5*DEG,l=(i%18===0?.035:i%6===0?.02:.01)*H;
+      ctx.moveTo(CX+Math.cos(a)*R,CY-Math.sin(a)*R);ctx.lineTo(CX+Math.cos(a)*(R+l),CY-Math.sin(a)*(R+l))}
+    ctx.stroke();
+  }
+  if(S.stars){
+    if(S.add)ctx.globalCompositeOperation='lighter';
+    const bgA=t2=>theta(t2-.08)*.3*DEG+.05*t2,a1=bgA(t),a0=bgA(Math.max(0,t-1/60)),fade=c01(t/.5);
+    for(let b=0;b<2;b++){ctx.beginPath();ctx.strokeStyle=rgb(S.fg,(b?.75:.30)*fade);ctx.lineWidth=(b?1.5:1)*dpr;
+      for(let i=0;i<S.stars;i++){const s=STARS[i];if(s.b!==b)continue;const R=s.r*W*.6;
+        ctx.moveTo(CX+Math.cos(s.a+a0)*R,CY-Math.sin(s.a+a0)*R);ctx.lineTo(CX+Math.cos(s.a+a1)*R+.01,CY-Math.sin(s.a+a1)*R)}
+      ctx.stroke()}
+    ctx.globalCompositeOperation='source-over';
+  }
+  // end move (acronym grows) + shake
+  const kz=1+.5*e6;ctx.translate(CX,CY-.07*H*e6);ctx.scale(kz,kz);ctx.translate(-CX,-CY);
+  // crisp glyphs
+  for(let g=(t<SPIN?2:0);g<3;g++){
+    const T=groupT(g,t),th=Math.min(theta(t),LOCK[g])*DEG;
+    ctx.lineWidth=T.U*.07;ctx.lineCap='butt';
+    if(t<SPIN){ // V first (two strokes meeting in the valley), legs extend down at the end
+      const c=Math.cos(th),s=Math.sin(th),pt=i=>[T.cx+(G[i][0]*c-G[i][1]*s)*T.U,T.cy-(G[i][0]*s+G[i][1]*c)*T.U];
+      const fr=eIO3((t-(PH[0]-MOVE))/MOVE),lg=eIO3((t-NODE_OUT)/.45),p0=pt(0),p1=pt(1),p2=pt(2),p3=pt(3),p4=pt(4);
+      ctx.strokeStyle=rgb(mix(S.fg,phCol,opK),t<PH[0]+.2?lerp(.28,1,opK):1);ctx.beginPath();
+      if(fr<1){ctx.moveTo(p1[0],p1[1]);ctx.lineTo(lerp(p1[0],p2[0],fr),lerp(p1[1],p2[1],fr));ctx.moveTo(p3[0],p3[1]);ctx.lineTo(lerp(p3[0],p2[0],fr),lerp(p3[1],p2[1],fr))}
+      else{if(lg>0)ctx.moveTo(lerp(p1[0],p0[0],lg),lerp(p1[1],p0[1],lg));else ctx.moveTo(p1[0],p1[1]);
+        if(lg>0)ctx.lineTo(p1[0],p1[1]);ctx.lineTo(p2[0],p2[1]);ctx.lineTo(p3[0],p3[1]);if(lg>0)ctx.lineTo(lerp(p3[0],p4[0],lg),lerp(p3[1],p4[1],lg))}
+      ctx.stroke();
+    }else{ctx.strokeStyle=rgb(mix(S.fg,S.tint[g],tintK*1.2),1);polyPath(T,th,0,4);ctx.stroke()}
+    // bearing ring + chevron nodes (reveal)
+    const aR=eIO3((t-(SPIN+.2))/.4)*(1-eIO3((t-(TITLE-.1))/.3));
+    if(aR>.01){const R=T.U*.74,c=Math.cos(th),s=Math.sin(th);ctx.lineWidth=dpr;ctx.strokeStyle=rgb(S.fg,.22*aR);ctx.beginPath();ctx.arc(T.cx,T.cy,R,0,6.2832);
+      ctx.moveTo(T.cx,T.cy-R-.02*H);ctx.lineTo(T.cx,T.cy-R+.02*H);ctx.stroke();
+      ctx.fillStyle=rgb(S.tint[g],aR);ctx.beginPath();ctx.arc(T.cx-s*R,T.cy-c*R,.008*H,0,6.2832);ctx.fill();
+      for(const i of [1,3,2]){const x=G[i][0],y=G[i][1],px=T.cx+(x*c-y*s)*T.U,py=T.cy-(x*s+y*c)*T.U,rr=.0085*H;
+        ctx.beginPath();ctx.arc(px,py,rr,0,6.2832);ctx.fillStyle=i===2?rgb(S.tint[g],aR):S.bg;ctx.globalAlpha=i===2?1:aR;ctx.fill();ctx.globalAlpha=1;
+        ctx.strokeStyle=rgb(i===2?S.tint[g]:S.fg,aR);ctx.lineWidth=1.4*dpr;ctx.stroke()}
+    }
+  }
+  // opening: nodes, rotating labels, read-out
+  const U=U0,NP=[[CX-.5*U,CY-.4*U],[CX+.5*U,CY-.4*U],[CX,CY]],OFF=[-.06*H,-.06*H,.10*H];
+  if(t<SPIN){
+    // comets sliding into the valley before each beat
+    for(const h of PH){const q=(t-(h-MOVE))/MOVE;if(q<=0||q>=1)continue;const ca=h===PH[0]?c01(q*6):opK;const e=eIO3(q);
+      for(const s of [0,1]){const x=lerp(NP[s][0],NP[2][0],e),y=lerp(NP[s][1],NP[2][1],e),x1=lerp(NP[s][0],NP[2][0],Math.max(0,e-.18)),y1=lerp(NP[s][1],NP[2][1],Math.max(0,e-.18));
+        ctx.strokeStyle=rgb(S.add?[255,255,255]:phCol,.9*ca);ctx.lineWidth=.011*H;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x,y);ctx.stroke()}}
+  }
+  if(opK>.01&&t<SPIN){
+    let pulse=0;for(const h of PH)if(t>=h)pulse+=Math.exp(-(t-h)*2.5);
+    for(let s=0;s<3;s++){const r=(s===2?.017+.004*pulse:.013)*H;ctx.beginPath();ctx.arc(NP[s][0],NP[s][1],r,0,6.2832);
+      ctx.globalAlpha=opK;ctx.fillStyle=s===2?rgb(phCol,1):S.bg;ctx.fill();ctx.globalAlpha=1;ctx.strokeStyle=rgb(s===2?phCol:S.fg,opK);ctx.lineWidth=2*dpr;ctx.stroke()}
+    for(let j=0;j<3;j++){const s0=((POS0[j]-ph.k)%3+3)%3,s1=(s0+2)%3,x=lerp(NP[s0][0],NP[s1][0],ph.m),y=lerp(NP[s0][1],NP[s1][1],ph.m)+lerp(OFF[s0],OFF[s1],ph.m);
+      const isT=(ph.m<.5?s0:s1)===2;tokens(VARS[j],x,y,.048*H,'Jost, Futura, sans-serif','400',rgb(isT?phCol:S.fg,opK*(isT?1:.85)))}
+    // read-out under the feet
+    const ry=CY+.4*U+.095*H;
+    for(let k=0;k<3;k++){const a=opK*(k===ph.k?1-c01(ph.m*2):k===ph.k+1?c01(ph.m*2-1):0);if(a<=.01)continue;
+      ctx.textAlign='center';ctx.fillStyle=rgb(S.tint[k],a);ctx.font='500 '+(.030*H)+'px "JetBrains Mono", monospace';ctx.fillText(NAME[k],CX,ry);
+      tokens(MI[k],CX,ry+.056*H,.034*H,'"JetBrains Mono", monospace','400',rgb(S.fg,.8*a))}
+  }
+  // full name letters; only "Le" survives into the acronym
+  const e3=eOut3((t-(TITLE+.4))/.5),lf=1-eIO3((t-FULL_OUT)/.45);
+  if(e3>0){ctx.font='300 '+F+'px Jost, Futura, sans-serif';ctx.textAlign='left';ctx.textBaseline='alphabetic';
+    for(const w of TXT){const a=e3*(w.keep?1:lf);if(a<=0)continue;ctx.fillStyle=rgb(S.fg,a);ctx.fillText(w.s,lerp(w.x,w.x2,e6)-(1-e3)*.012*W,CY+capH/2)}}
+  const eh=eOut3((t-(COLL[1]-.3))/.35);
+  if(eh>0){ctx.strokeStyle=rgb(S.fg,.85*eh);ctx.lineWidth=UT*.07;ctx.lineCap='butt';ctx.beginPath();ctx.moveTo(HY[0],CY);ctx.lineTo(lerp(HY[0],HY[1],eh),CY);ctx.stroke()}
+  // subtitle
+  ctx.setTransform(1,0,0,1,0,0);
+  if(e5>0){
+    ctx.strokeStyle=rgb(S.fg,.30*e5);ctx.lineWidth=dpr;ctx.beginPath();ctx.moveTo(CX-.2*W*e5,CY+.085*H);ctx.lineTo(CX+.2*W*e5,CY+.085*H);ctx.stroke();
+    ctx.font='300 '+(.0245*W)+'px Jost, Futura, sans-serif';try{ctx.letterSpacing='0.07em'}catch(e){}
+    ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle=rgb(S.fg,.88*e5);
+    ctx.fillText('Learning World Models via S-Information for Robot Control',CX,CY+.17*H+(1-e5)*.014*H);
+    try{ctx.letterSpacing='0px'}catch(e){}
+  }
+  if(S.add){const v=ctx.createRadialGradient(CX,CY,H*.35,CX,CY,W*.62);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(0,0,0,.6)');ctx.fillStyle=v;ctx.fillRect(0,0,W,H)}
+}
+
+// ---- audio (synthesised rhythm reference)
+let AC=null,bus=null,soundOn=false;
+function audioFrom(t0){
+  if(!soundOn)return;
+  try{
+    AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();
+    if(bus){try{bus.disconnect()}catch(e){}}
+    bus=AC.createGain();bus.gain.value=.8;bus.connect(AC.destination);
+    const now=AC.currentTime+.03,at=t=>now+(t-t0);
+    const nb=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate),d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+    const whoosh=(t,dur,f0,f1,g)=>{if(t<t0)return;const s=AC.createBufferSource();s.buffer=nb;s.loop=true;const f=AC.createBiquadFilter();f.type='bandpass';f.Q.value=1.4;
+      f.frequency.setValueAtTime(f0,at(t));f.frequency.exponentialRampToValueAtTime(f1,at(t+dur));const a=AC.createGain();
+      a.gain.setValueAtTime(.0001,at(t));a.gain.exponentialRampToValueAtTime(g,at(t+dur*.8));a.gain.exponentialRampToValueAtTime(.0001,at(t+dur+.12));
+      s.connect(f).connect(a).connect(bus);s.start(at(t));s.stop(at(t+dur+.2))};
+    const tone=(t,f,g)=>{if(t<t0)return;const o=AC.createOscillator(),a=AC.createGain();o.frequency.value=f;a.gain.setValueAtTime(.0001,at(t));a.gain.exponentialRampToValueAtTime(g,at(t+.12));a.gain.exponentialRampToValueAtTime(.0001,at(t+1.8));o.connect(a).connect(bus);o.start(at(t));o.stop(at(t+1.9))};
+    whoosh(.1,.8,200,700,.06);tone(PH[0],220,.10);
+    whoosh(PH[1]-MOVE,MOVE,300,900,.05);tone(PH[1],277.2,.10);
+    whoosh(PH[2]-MOVE,MOVE,300,900,.05);tone(PH[2],329.6,.10);
+    whoosh(SPIN,1.0,250,600,.06);tone(LOCKT[0],440,.04);tone(LOCKT[1],554.4,.04);tone(LOCKT[2],659.3,.04);
+    whoosh(TITLE,.8,700,300,.05);whoosh(COLL[0],.75,400,800,.04);
+    [110,164.8,220,329.6].forEach((f,i)=>{const st=Math.max(t0,TITLE-.1);const o=AC.createOscillator(),a=AC.createGain();o.frequency.value=f;
+      a.gain.setValueAtTime(.0001,at(st));a.gain.exponentialRampToValueAtTime(.05/(1+i*.4),at(Math.max(st+.3,TITLE+1)));a.gain.exponentialRampToValueAtTime(.0001,at(DUR+.9));
+      o.connect(a).connect(bus);o.start(at(st));o.stop(at(DUR+1))});
+  }catch(e){}
+}
+function audioStop(){if(bus){try{bus.disconnect()}catch(e){}bus=null}}
+
+// ---- transport
+let T=0,playing=false,last=0,loop=false,endHold=0;
+const scrub=document.getElementById('scrub'),tc=document.getElementById('tc'),playB=document.getElementById('play');
+function ui(){scrub.value=T;tc.textContent=T.toFixed(2)+' / 17.30 s';playB.textContent=playing?'❚❚ Pause':(T>=DUR||T===0?'▶ Replay':'▶ Resume')}
+function tickF(now){
+  if(!playing)return;const dt=Math.min(.05,(now-last)/1000);last=now;
+  if(T>=DUR){endHold+=dt;if(loop&&endHold>1.5){T=0;endHold=0;audioFrom(0)}else if(!loop){playing=false;ui();return}}
+  else T=Math.min(DUR,T+dt);
+  render(T);ui();requestAnimationFrame(tickF);
+}
+function play(from){if(from!=null)T=from;if(T>=DUR)T=0;endHold=0;playing=true;last=performance.now();audioFrom(T);ui();requestAnimationFrame(tickF)}
+function pause(){playing=false;audioStop();ui()}
+function seek(t){pause();T=t;render(T);ui()}
+playB.onclick=()=>playing?pause():play(T>=DUR?0:T);
+scrub.oninput=()=>seek(parseFloat(scrub.value));
+document.getElementById('sound').onclick=e=>{soundOn=!soundOn;e.currentTarget.setAttribute('aria-pressed',soundOn);e.currentTarget.textContent='Sound: '+(soundOn?'on':'off');if(soundOn)play(0);else audioStop()};
+document.getElementById('loop').onclick=e=>{loop=!loop;e.currentTarget.setAttribute('aria-pressed',loop);e.currentTarget.textContent='Loop: '+(loop?'on':'off');if(loop&&!playing)play(0)};
+function setStyle(k,replay){S=STYLES[k];document.getElementById('s'+k).checked=true;frame.style.background=S.bg;
+  if(replay)play(0);else render(T)}
+document.querySelectorAll('input[name=style]').forEach(r=>r.onchange=()=>setStyle(r.value,true));
+document.querySelectorAll('[data-style]').forEach(b=>b.onclick=()=>{frame.scrollIntoView({behavior:'smooth',block:'center'});setStyle(b.dataset.style,true)});
+document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{frame.scrollIntoView({behavior:'smooth',block:'center'});seek(parseFloat(b.dataset.t))});
+new ResizeObserver(()=>{layout();render(T)}).observe(frame);
+
+function boot(){
+  layout();
+  const h=new URLSearchParams(location.hash.slice(1));let st='A';
+  if(h.get('s')&&STYLES[h.get('s')])st=h.get('s');if(st&&STYLES[st])setStyle(st,false);
+  if(h.get('t')!=null){seek(parseFloat(h.get('t')));return}
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){seek(DUR);return}
+  play(0);
+}
+const fl=document.fonts&&document.fonts.load?Promise.all([document.fonts.load('300 100px Jost'),document.fonts.load('400 40px Jost'),document.fonts.load('400 20px "JetBrains Mono"')]):Promise.resolve();
+Promise.race([fl,new Promise(r=>setTimeout(r,1800))]).then(boot,boot);
+})();
+</script>
+</body>
+</html>
