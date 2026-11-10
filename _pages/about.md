@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <em>“I align the geometry of how machines perceive — and build the robots that do.”</em><br>PhD Student, <a href='https://vu.nl/en'>Vrije Universiteit Amsterdam</a> · Robot Learning · Multimodal Representation · Optimal Transport
+subtitle: PhD Student, <a href='https://vu.nl/en'>Vrije Universiteit Amsterdam</a> · Robot Learning · Multimodal Representation · Optimal Transport
 
 profile:
   align: right
@@ -37,12 +37,14 @@ Feel free to reach out for collaborations or a chat about optimal transport, mul
 
 <br>
 
-#### 🤖 Featured — UniOMA (ICRA 2026)
+#### Featured — Σ-LeWM (2026)
 
-{% include figure.liquid loading="eager" path="assets/img/unioma/vip.jpg" class="img-fluid rounded z-depth-1" alt="UniOMA real-robot setup: vision, IMU and proprioception drive frozen encoders to predict end-effector position on a 6-DoF arm." %}
+<div style="max-width: 600px; margin: 20px auto;">
+{% include figure.liquid loading="eager" path="assets/img/publication_preview/sigma-lewm.svg" class="img-fluid rounded" alt="Σ-LeWM: forward, backward, and inverse dynamics jointly structure the latent world model for robot control." %}
+</div>
 
 <div class="caption">
-  <strong>UniOMA</strong> uses Gromov–Wasserstein optimal transport to align the <em>structure</em> of heterogeneous robot sensors into a shared representation space — improving robustness when sensors drop out. <a href="{{ '/projects/unioma/' | relative_url }}">Read more →</a>
+  <strong>Σ-LeWM: Learning World Models via S-Information for Robot Control</strong> combines forward, backward, and inverse dynamics to learn structured latent representations, improving robot control and planning efficiency. <a href="https://zuxinrui.github.io/sigma-lewm/">Explore the project →</a>
 </div>
 
 ###### What does Xinrui Zu work on?
@@ -88,12 +90,37 @@ Xinrui Zu develops optimal-transport methods — primarily Gromov–Wasserstein 
 {
   "@context": "https://schema.org",
   "@type": "ScholarlyArticle",
-  "headline": "UniOMA: Unified Optimal-Transport Multi-Modal Structural Alignment for Robot Perception",
-  "author": { "@id": "https://zuxinrui.github.io/#person" },
+  "headline": "Σ-LeWM: Learning World Models via S-Information for Robot Control",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Xinrui Zu"
+    },
+    {
+      "@type": "Person",
+      "name": "Michael Przystupa"
+    },
+    {
+      "@type": "Person",
+      "name": "Zhao Yang"
+    },
+    {
+      "@type": "Person",
+      "name": "Shujian Yu"
+    },
+    {
+      "@type": "Person",
+      "name": "Kevin Sebastian Luck"
+    }
+  ],
   "datePublished": "2026",
-  "publisher": { "@type": "Organization", "name": "IEEE ICRA 2026" },
-  "about": ["Optimal Transport", "Gromov-Wasserstein", "Robot Perception", "Multimodal Alignment"],
-  "url": "https://openreview.net/forum?id=rcc5qZ6CtV"
+  "about": [
+    "World Models",
+    "S-Information",
+    "Robot Control",
+    "Representation Learning"
+  ],
+  "url": "https://zuxinrui.github.io/sigma-lewm/"
 }
 </script>
 
